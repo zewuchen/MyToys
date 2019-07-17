@@ -7,11 +7,17 @@
 //
 
 import UIKit
+import CoreData
 
 class CardToysTableViewController: UITableViewController{
+    
+    var context: NSManagedObjectContext?
+    var brinquedos:[Toys] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        fetchData()
 
         tableView.dataSource = self
         tableView.delegate = self
@@ -21,6 +27,14 @@ class CardToysTableViewController: UITableViewController{
 
     }
     
+    func fetchData(){
+        do{
+            brinquedos = try context!.fetch(Toys.fetchRequest())
+        } catch{
+            print(error.localizedDescription)
+        }
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         tableView.reloadData()
     }
@@ -28,13 +42,13 @@ class CardToysTableViewController: UITableViewController{
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return 10
+        return brinquedos.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Card") as! CardToysTableViewCell
-        cell.txtName.text = "Teste \(indexPath) 11111111111111111111111"
-
+        cell.txtName.text = brinquedos[indexPath.row].faixaEtaria
+        
         return cell
     }
     

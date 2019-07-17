@@ -17,6 +17,9 @@ class ToyTableViewController: UITableViewController, UITextFieldDelegate, UIText
     @IBOutlet weak var txtQuantidade: UITextField!
     @IBOutlet weak var txtViewObservacoes: UITextView!
     
+    var tamanho:String = ""
+    var faixaEtaria:String = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.txtNome.delegate = self
@@ -53,4 +56,11 @@ class ToyTableViewController: UITableViewController, UITextFieldDelegate, UIText
         textView.resignFirstResponder()
     }
 
+    @IBAction func btnSalvar(_ sender: Any) {
+        Toy.shared.nome = txtNome.text
+        Toy.shared.quantidade = txtQuantidade.text
+        Toy.shared.observacoes = txtViewObservacoes.text
+        Toy.shared.save()
+        self.navigationController?.popViewController(animated: true)
+    }
 }
