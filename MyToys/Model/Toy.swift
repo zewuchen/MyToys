@@ -11,6 +11,7 @@ class Toy{
     public var observacoes: String?
     public var quantidade: String?
     public var tamanho: String?
+    public var foto: String?
     
     var context: NSManagedObjectContext?
     
@@ -20,6 +21,7 @@ class Toy{
         self.observacoes = ""
         self.quantidade = ""
         self.tamanho = ""
+        self.foto = ""
         
         self.context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     }
@@ -30,6 +32,7 @@ class Toy{
         self.observacoes = ""
         self.quantidade = ""
         self.tamanho = ""
+        self.foto = ""
     }
     
     func save(){
@@ -43,6 +46,7 @@ class Toy{
         registry.observacoes = self.observacoes
         registry.quantidade = self.quantidade
         registry.tamanho = self.tamanho
+        registry.foto = self.foto
         
         do {
             try context.save()

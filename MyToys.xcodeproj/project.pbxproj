@@ -13,8 +13,8 @@
 		8C03CF6222DE5C66004FD3B6 /* OptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C03CF6122DE5C66004FD3B6 /* OptionTableViewCell.swift */; };
 		8C12942E22DE651A00B583AF /* AgeGroupTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C12942D22DE651A00B583AF /* AgeGroupTableViewController.swift */; };
 		8C12943422DF832A00B583AF /* Toy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C12943322DF832A00B583AF /* Toy.swift */; };
-		8C20D6DF22DF951E00C96E4A /* Toys+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C20D6DD22DF951E00C96E4A /* Toys+CoreDataClass.swift */; };
-		8C20D6E022DF951E00C96E4A /* Toys+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C20D6DE22DF951E00C96E4A /* Toys+CoreDataProperties.swift */; };
+		8C142BC622E0FD300089571B /* Toys+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C142BC422E0FD300089571B /* Toys+CoreDataClass.swift */; };
+		8C142BC722E0FD300089571B /* Toys+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C142BC522E0FD300089571B /* Toys+CoreDataProperties.swift */; };
 		8C9D663E22DCE33500763569 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9D663D22DCE33500763569 /* AppDelegate.swift */; };
 		8C9D664322DCE33500763569 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C9D664122DCE33500763569 /* Main.storyboard */; };
 		8C9D664622DCE33500763569 /* MyToys.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8C9D664422DCE33500763569 /* MyToys.xcdatamodeld */; };
@@ -31,8 +31,8 @@
 		8C03CF6122DE5C66004FD3B6 /* OptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionTableViewCell.swift; sourceTree = "<group>"; };
 		8C12942D22DE651A00B583AF /* AgeGroupTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgeGroupTableViewController.swift; sourceTree = "<group>"; };
 		8C12943322DF832A00B583AF /* Toy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toy.swift; sourceTree = "<group>"; };
-		8C20D6DD22DF951E00C96E4A /* Toys+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Toys+CoreDataClass.swift"; sourceTree = "<group>"; };
-		8C20D6DE22DF951E00C96E4A /* Toys+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Toys+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		8C142BC422E0FD300089571B /* Toys+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Toys+CoreDataClass.swift"; sourceTree = "<group>"; };
+		8C142BC522E0FD300089571B /* Toys+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Toys+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		8C9D663A22DCE33500763569 /* MyToys.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyToys.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C9D663D22DCE33500763569 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8C9D664222DCE33500763569 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -92,7 +92,6 @@
 				8C9D664922DCE33600763569 /* LaunchScreen.storyboard */,
 				8C9D664C22DCE33600763569 /* Info.plist */,
 				8C9D664422DCE33500763569 /* MyToys.xcdatamodeld */,
-				8C12943322DF832A00B583AF /* Toy.swift */,
 			);
 			path = MyToys;
 			sourceTree = "<group>";
@@ -100,8 +99,9 @@
 		8C9D665222DCECCA00763569 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				8C20D6DD22DF951E00C96E4A /* Toys+CoreDataClass.swift */,
-				8C20D6DE22DF951E00C96E4A /* Toys+CoreDataProperties.swift */,
+				8C142BC422E0FD300089571B /* Toys+CoreDataClass.swift */,
+				8C142BC522E0FD300089571B /* Toys+CoreDataProperties.swift */,
+				8C12943322DF832A00B583AF /* Toy.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -204,10 +204,10 @@
 				8C03CF5722DD1C3C004FD3B6 /* ToyTableViewController.swift in Sources */,
 				8C9D665622DCEDF400763569 /* CardToysTableViewCell.swift in Sources */,
 				8C9D663E22DCE33500763569 /* AppDelegate.swift in Sources */,
-				8C20D6DF22DF951E00C96E4A /* Toys+CoreDataClass.swift in Sources */,
+				8C142BC622E0FD300089571B /* Toys+CoreDataClass.swift in Sources */,
 				8C12943422DF832A00B583AF /* Toy.swift in Sources */,
 				8C03CF6222DE5C66004FD3B6 /* OptionTableViewCell.swift in Sources */,
-				8C20D6E022DF951E00C96E4A /* Toys+CoreDataProperties.swift in Sources */,
+				8C142BC722E0FD300089571B /* Toys+CoreDataProperties.swift in Sources */,
 				8C12942E22DE651A00B583AF /* AgeGroupTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

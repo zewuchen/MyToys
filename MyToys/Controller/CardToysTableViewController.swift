@@ -30,13 +30,15 @@ class CardToysTableViewController: UITableViewController{
     func fetchData(){
         do{
             brinquedos = try context!.fetch(Toys.fetchRequest())
+            brinquedos.reverse()
+            tableView.reloadData()
         } catch{
             print(error.localizedDescription)
         }
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        tableView.reloadData()
+        fetchData()
     }
 
 
@@ -47,7 +49,7 @@ class CardToysTableViewController: UITableViewController{
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Card") as! CardToysTableViewCell
-        cell.txtName.text = brinquedos[indexPath.row].faixaEtaria
+        cell.txtName.text = brinquedos[indexPath.row].nome
         
         return cell
     }

@@ -2,7 +2,7 @@
 //  Toys+CoreDataProperties.swift
 //  MyToys
 //
-//  Created by Zewu Chen on 17/07/19.
+//  Created by Zewu Chen on 18/07/19.
 //  Copyright © 2019 Zewu Chen. All rights reserved.
 //
 //
@@ -22,5 +22,6 @@ extension Toys {
     @NSManaged public var observacoes: String?
     @NSManaged public var quantidade: String?
     @NSManaged public var tamanho: String?
+    @NSManaged public var foto: String?
 
 }
