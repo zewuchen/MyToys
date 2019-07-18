@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="EHA-Dg-H4d">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="N2j-Yz-DDe">
     <device id="retina6_1" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -301,6 +301,44 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="S84-vf-xri" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2706" y="-271"/>
+        </scene>
+        <!--Camera View Controller-->
+        <scene sceneID="xTF-DK-B1D">
+            <objects>
+                <viewController id="N2j-Yz-DDe" customClass="CameraViewController" customModule="MyToys" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="fGH-nh-S7q">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="s9k-C4-faX">
+                                <rect key="frame" x="0.0" y="44" width="414" height="448"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pda-SK-6kB">
+                                <rect key="frame" x="197" y="680" width="22" height="22"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <action selector="btnAddFoto:" destination="N2j-Yz-DDe" eventType="touchUpInside" id="asH-3l-gyY"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="s9k-C4-faX" firstAttribute="top" secondItem="M7i-qo-gAn" secondAttribute="top" id="1MA-Ay-sxT"/>
+                            <constraint firstItem="M7i-qo-gAn" firstAttribute="bottom" secondItem="Pda-SK-6kB" secondAttribute="bottom" constant="160" id="5lD-ld-T7j"/>
+                            <constraint firstItem="s9k-C4-faX" firstAttribute="height" secondItem="fGH-nh-S7q" secondAttribute="height" multiplier="0.5" id="90o-Rm-tS5"/>
+                            <constraint firstItem="M7i-qo-gAn" firstAttribute="trailing" secondItem="s9k-C4-faX" secondAttribute="trailing" id="EUC-aM-awp"/>
+                            <constraint firstItem="s9k-C4-faX" firstAttribute="leading" secondItem="M7i-qo-gAn" secondAttribute="leading" id="wQ5-jO-X30"/>
+                            <constraint firstItem="Pda-SK-6kB" firstAttribute="leading" secondItem="M7i-qo-gAn" secondAttribute="leading" constant="197" id="x6C-hJ-gex"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="M7i-qo-gAn"/>
+                    </view>
+                    <connections>
+                        <outlet property="image" destination="s9k-C4-faX" id="gXJ-wz-0Pg"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gr9-Us-Y1W" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3747.826086956522" y="156.69642857142856"/>
         </scene>
         <!--Toy-->
         <scene sceneID="xBD-TI-mlm">

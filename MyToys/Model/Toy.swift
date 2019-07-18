@@ -35,6 +35,23 @@ class Toy{
         self.foto = ""
     }
     
+    func saveFoto(foto:UIImage){
+        let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        //let fileName = "\(Date()).jpg"
+        let fileName = "\(UUID()).jpg"
+        print(fileName)
+        let fileURL = documentsDirectory.appendingPathComponent(fileName)
+        if let data = foto.jpegData(compressionQuality:  1.0), !FileManager.default.fileExists(atPath: fileURL.path) {
+            do {
+                try data.write(to: fileURL)
+                Toy.shared.foto = fileURL.path
+                print("Foto salva")
+            } catch {
+                print("Erro ao salvar a foto:", error)
+            }
+        }
+    }
+    
     func save(){
         guard let context = self.context else {return}
         
@@ -55,7 +72,6 @@ class Toy{
             let nserror = error as NSError
             fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
         }
-        
     }
     
 }

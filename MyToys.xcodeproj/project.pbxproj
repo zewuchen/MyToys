@@ -15,6 +15,8 @@
 		8C12943422DF832A00B583AF /* Toy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C12943322DF832A00B583AF /* Toy.swift */; };
 		8C142BC622E0FD300089571B /* Toys+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C142BC422E0FD300089571B /* Toys+CoreDataClass.swift */; };
 		8C142BC722E0FD300089571B /* Toys+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C142BC522E0FD300089571B /* Toys+CoreDataProperties.swift */; };
+		8C142BCB22E1016B0089571B /* CameraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C142BCA22E1016B0089571B /* CameraController.swift */; };
+		8C142BCD22E1026D0089571B /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C142BCC22E1026D0089571B /* CameraViewController.swift */; };
 		8C9D663E22DCE33500763569 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9D663D22DCE33500763569 /* AppDelegate.swift */; };
 		8C9D664322DCE33500763569 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C9D664122DCE33500763569 /* Main.storyboard */; };
 		8C9D664622DCE33500763569 /* MyToys.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8C9D664422DCE33500763569 /* MyToys.xcdatamodeld */; };
@@ -33,6 +35,8 @@
 		8C12943322DF832A00B583AF /* Toy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toy.swift; sourceTree = "<group>"; };
 		8C142BC422E0FD300089571B /* Toys+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Toys+CoreDataClass.swift"; sourceTree = "<group>"; };
 		8C142BC522E0FD300089571B /* Toys+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Toys+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		8C142BCA22E1016B0089571B /* CameraController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraController.swift; sourceTree = "<group>"; };
+		8C142BCC22E1026D0089571B /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		8C9D663A22DCE33500763569 /* MyToys.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyToys.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C9D663D22DCE33500763569 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8C9D664222DCE33500763569 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -122,6 +126,8 @@
 				8C03CF5622DD1C3C004FD3B6 /* ToyTableViewController.swift */,
 				8C03CF5F22DE5C34004FD3B6 /* SizeTableViewController.swift */,
 				8C12942D22DE651A00B583AF /* AgeGroupTableViewController.swift */,
+				8C142BCA22E1016B0089571B /* CameraController.swift */,
+				8C142BCC22E1026D0089571B /* CameraViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -202,8 +208,10 @@
 				8C9D665A22DCF43B00763569 /* CardToysTableViewController.swift in Sources */,
 				8C9D664622DCE33500763569 /* MyToys.xcdatamodeld in Sources */,
 				8C03CF5722DD1C3C004FD3B6 /* ToyTableViewController.swift in Sources */,
+				8C142BCD22E1026D0089571B /* CameraViewController.swift in Sources */,
 				8C9D665622DCEDF400763569 /* CardToysTableViewCell.swift in Sources */,
 				8C9D663E22DCE33500763569 /* AppDelegate.swift in Sources */,
+				8C142BCB22E1016B0089571B /* CameraController.swift in Sources */,
 				8C142BC622E0FD300089571B /* Toys+CoreDataClass.swift in Sources */,
 				8C12943422DF832A00B583AF /* Toy.swift in Sources */,
 				8C03CF6222DE5C66004FD3B6 /* OptionTableViewCell.swift in Sources */,
