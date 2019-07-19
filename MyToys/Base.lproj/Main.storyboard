@@ -50,25 +50,26 @@
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WqB-Jn-mhH" userLabel="Container View">
                                             <rect key="frame" x="15" y="10" width="384" height="110"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Nome" textAlignment="natural" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h7B-tu-paj">
-                                                    <rect key="frame" x="133" y="13" width="235" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nome" textAlignment="natural" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h7B-tu-paj">
+                                                    <rect key="frame" x="239" y="13" width="130" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Tfd-ie-XAm">
-                                                    <rect key="frame" x="13" y="13" width="115" height="84"/>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Tfd-ie-XAm">
+                                                    <rect key="frame" x="0.0" y="0.0" width="230.5" height="110"/>
                                                     <color key="backgroundColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </imageView>
                                             </subviews>
                                             <color key="backgroundColor" red="0.40784313729999999" green="0.69411764710000001" blue="0.95294117649999999" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
-                                                <constraint firstItem="Tfd-ie-XAm" firstAttribute="leading" secondItem="WqB-Jn-mhH" secondAttribute="leadingMargin" constant="5" id="0qV-1f-w5j"/>
-                                                <constraint firstItem="Tfd-ie-XAm" firstAttribute="top" secondItem="WqB-Jn-mhH" secondAttribute="topMargin" constant="5" id="8S0-lg-FvZ"/>
-                                                <constraint firstItem="h7B-tu-paj" firstAttribute="leading" secondItem="Tfd-ie-XAm" secondAttribute="trailing" constant="5" id="DKH-FE-LXd"/>
-                                                <constraint firstItem="h7B-tu-paj" firstAttribute="top" secondItem="WqB-Jn-mhH" secondAttribute="topMargin" constant="5" id="Koj-1H-P3M"/>
-                                                <constraint firstItem="Tfd-ie-XAm" firstAttribute="width" secondItem="WqB-Jn-mhH" secondAttribute="width" multiplier="0.3" id="S0e-ow-TNG"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="Tfd-ie-XAm" secondAttribute="bottom" constant="5" id="crH-vv-Gqe"/>
+                                                <constraint firstItem="Tfd-ie-XAm" firstAttribute="top" secondItem="WqB-Jn-mhH" secondAttribute="top" id="1fU-h4-oJf"/>
+                                                <constraint firstAttribute="trailing" secondItem="h7B-tu-paj" secondAttribute="trailing" constant="15" id="5cU-BR-AZB"/>
+                                                <constraint firstAttribute="bottom" secondItem="Tfd-ie-XAm" secondAttribute="bottom" id="gip-XZ-6XJ"/>
+                                                <constraint firstItem="h7B-tu-paj" firstAttribute="top" secondItem="WqB-Jn-mhH" secondAttribute="top" constant="13" id="kW7-U9-E2y"/>
+                                                <constraint firstItem="Tfd-ie-XAm" firstAttribute="leading" secondItem="WqB-Jn-mhH" secondAttribute="leading" id="l6W-nq-2ju"/>
+                                                <constraint firstItem="Tfd-ie-XAm" firstAttribute="width" secondItem="WqB-Jn-mhH" secondAttribute="width" multiplier="0.6" id="wiV-oe-ldP"/>
+                                                <constraint firstItem="h7B-tu-paj" firstAttribute="leading" secondItem="Tfd-ie-XAm" secondAttribute="trailing" constant="8" symbolic="YES" id="wpA-Gk-709"/>
                                             </constraints>
                                         </view>
                                     </subviews>
@@ -84,7 +85,6 @@
                                     <outlet property="card" destination="WqB-Jn-mhH" id="0tE-iL-lX4"/>
                                     <outlet property="foto" destination="Tfd-ie-XAm" id="965-43-N5J"/>
                                     <outlet property="txtName" destination="h7B-tu-paj" id="dXc-O7-pse"/>
-                                    <segue destination="dg7-ma-HA9" kind="show" identifier="viewSegue" id="85D-eD-ZXm"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
