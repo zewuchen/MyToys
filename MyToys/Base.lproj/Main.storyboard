@@ -48,7 +48,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WqB-Jn-mhH" userLabel="Container View">
-                                            <rect key="frame" x="15" y="20" width="384" height="100"/>
+                                            <rect key="frame" x="15" y="10" width="384" height="110"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Nome" textAlignment="natural" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h7B-tu-paj">
                                                     <rect key="frame" x="133" y="13" width="235" height="21"/>
@@ -56,8 +56,8 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Tfd-ie-XAm">
-                                                    <rect key="frame" x="13" y="13" width="115" height="74"/>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Tfd-ie-XAm">
+                                                    <rect key="frame" x="13" y="13" width="115" height="84"/>
                                                     <color key="backgroundColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </imageView>
                                             </subviews>
@@ -77,7 +77,7 @@
                                         <constraint firstItem="WqB-Jn-mhH" firstAttribute="leading" secondItem="p6r-EA-enM" secondAttribute="leading" constant="15" id="CkO-0q-PUd"/>
                                         <constraint firstAttribute="bottom" secondItem="WqB-Jn-mhH" secondAttribute="bottom" constant="10" id="V8x-wT-SZk"/>
                                         <constraint firstAttribute="trailing" secondItem="WqB-Jn-mhH" secondAttribute="trailing" constant="15" id="gWp-5e-Zfl"/>
-                                        <constraint firstItem="WqB-Jn-mhH" firstAttribute="top" secondItem="p6r-EA-enM" secondAttribute="top" constant="20" id="nBx-AC-MJn"/>
+                                        <constraint firstItem="WqB-Jn-mhH" firstAttribute="top" secondItem="p6r-EA-enM" secondAttribute="top" constant="10" id="nBx-AC-MJn"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
@@ -124,11 +124,14 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="49.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Nome" clearsOnBeginEditing="YES" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="owV-4R-wGI">
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Nome" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="owV-4R-wGI">
                                                     <rect key="frame" x="20" y="11" width="374" height="28"/>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <action selector="txtNomeDidChange:" destination="Sho-NG-aW5" eventType="editingDidEnd" id="FVx-SD-ZGT"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -146,11 +149,14 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="49.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Quantidade" clearsOnBeginEditing="YES" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jfJ-yg-8Nc">
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Quantidade" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jfJ-yg-8Nc">
                                                     <rect key="frame" x="20" y="11" width="374" height="28"/>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                                    <connections>
+                                                        <action selector="txtQuantidadeDidChange:" destination="Sho-NG-aW5" eventType="editingDidEnd" id="Q0U-bE-Bpp"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -251,11 +257,12 @@
                     <navigationItem key="navigationItem" title="Novo Brinquedo" id="wLR-Le-Eql">
                         <barButtonItem key="rightBarButtonItem" title="Próximo" id="mrJ-k0-9ec">
                             <connections>
-                                <action selector="btnProximo:" destination="Sho-NG-aW5" id="xb9-Oo-aw0"/>
+                                <action selector="btnProximoAction:" destination="Sho-NG-aW5" id="Guy-xB-oR5"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="btnProximo" destination="mrJ-k0-9ec" id="NRx-Pd-9bw"/>
                         <outlet property="txtNome" destination="owV-4R-wGI" id="tb1-Zp-eaK"/>
                         <outlet property="txtQuantidade" destination="jfJ-yg-8Nc" id="tlU-VF-lw1"/>
                         <outlet property="txtViewObservacoes" destination="80I-cb-qPu" id="coA-rP-kf1"/>
@@ -311,16 +318,17 @@
             </objects>
             <point key="canvasLocation" x="2706" y="-271"/>
         </scene>
-        <!--Foto-->
+        <!--Camera-->
         <scene sceneID="xTF-DK-B1D">
             <objects>
-                <viewController storyboardIdentifier="camera" title="Foto" id="N2j-Yz-DDe" customClass="CameraViewController" customModule="MyToys" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="camera" title="Camera" id="N2j-Yz-DDe" customClass="CameraViewController" customModule="MyToys" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="fGH-nh-S7q">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="s9k-C4-faX">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="s9k-C4-faX">
                                 <rect key="frame" x="0.0" y="44" width="414" height="448"/>
+                                <color key="backgroundColor" red="0.40784313729999999" green="0.69411764710000001" blue="0.95294117649999999" alpha="1" colorSpace="calibratedRGB"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pda-SK-6kB">
                                 <rect key="frame" x="197" y="680" width="22" height="22"/>
@@ -349,6 +357,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="btnSave" destination="DNE-qh-d5s" id="OYJ-pv-yZV"/>
                         <outlet property="image" destination="s9k-C4-faX" id="gXJ-wz-0Pg"/>
                     </connections>
                 </viewController>

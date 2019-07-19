@@ -11,10 +11,14 @@ import UIKit
 class CameraViewController: UIViewController {
 
     @IBOutlet weak var image: UIImageView!
+    @IBOutlet weak var btnSave: UIBarButtonItem!
+    
     var foto:UIImage? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        btnSave.isEnabled = false
 
         // Do any additional setup after loading the view.
     }
@@ -23,6 +27,7 @@ class CameraViewController: UIViewController {
         Camera().selecionadorImagem(self){ imagem in
             self.image.image = imagem
             self.foto = imagem
+            self.btnSave.isEnabled = true
         }
     }
     
