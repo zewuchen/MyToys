@@ -50,6 +50,10 @@ class CardToysTableViewController: UITableViewController{
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Card") as! CardToysTableViewCell
         cell.txtName.text = brinquedos[indexPath.row].nome
+        if let foto =  brinquedos[indexPath.row].foto,  brinquedos[indexPath.row].foto != nil{
+            print("entrou aqui \(foto)")
+            cell.foto.image = UIImage(contentsOfFile: foto)
+        }
         
         return cell
     }

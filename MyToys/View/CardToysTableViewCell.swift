@@ -11,6 +11,7 @@ import UIKit
 class CardToysTableViewCell: UITableViewCell {
     
     @IBOutlet weak var txtName: UILabel!
+    @IBOutlet weak var foto: UIImageView!
     
     @IBOutlet weak var card: UIView! {
         didSet {

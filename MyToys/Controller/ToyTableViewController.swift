@@ -56,11 +56,13 @@ class ToyTableViewController: UITableViewController, UITextFieldDelegate, UIText
         textView.resignFirstResponder()
     }
 
-    @IBAction func btnSalvar(_ sender: Any) {
+    @IBAction func btnProximo(_ sender: Any) {
         Toy.shared.nome = txtNome.text
         Toy.shared.quantidade = txtQuantidade.text
         Toy.shared.observacoes = txtViewObservacoes.text
-        Toy.shared.save()
-        self.navigationController?.popViewController(animated: true)
+        
+        let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+        let controller = storyboard.instantiateViewController(withIdentifier: "camera")
+        self.navigationController!.pushViewController(controller, animated: true)
     }
 }

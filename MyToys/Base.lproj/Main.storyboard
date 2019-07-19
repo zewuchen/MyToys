@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="N2j-Yz-DDe">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="EHA-Dg-H4d">
     <device id="retina6_1" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -50,17 +50,25 @@
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WqB-Jn-mhH" userLabel="Container View">
                                             <rect key="frame" x="15" y="20" width="384" height="100"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nome" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h7B-tu-paj">
-                                                    <rect key="frame" x="169" y="39.5" width="46" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Nome" textAlignment="natural" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h7B-tu-paj">
+                                                    <rect key="frame" x="133" y="13" width="235" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Tfd-ie-XAm">
+                                                    <rect key="frame" x="13" y="13" width="115" height="74"/>
+                                                    <color key="backgroundColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </imageView>
                                             </subviews>
                                             <color key="backgroundColor" red="0.40784313729999999" green="0.69411764710000001" blue="0.95294117649999999" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
-                                                <constraint firstItem="h7B-tu-paj" firstAttribute="centerY" secondItem="WqB-Jn-mhH" secondAttribute="centerY" id="Rv6-lC-aA5"/>
-                                                <constraint firstItem="h7B-tu-paj" firstAttribute="centerX" secondItem="WqB-Jn-mhH" secondAttribute="centerX" id="lLs-Dk-EjV"/>
+                                                <constraint firstItem="Tfd-ie-XAm" firstAttribute="leading" secondItem="WqB-Jn-mhH" secondAttribute="leadingMargin" constant="5" id="0qV-1f-w5j"/>
+                                                <constraint firstItem="Tfd-ie-XAm" firstAttribute="top" secondItem="WqB-Jn-mhH" secondAttribute="topMargin" constant="5" id="8S0-lg-FvZ"/>
+                                                <constraint firstItem="h7B-tu-paj" firstAttribute="leading" secondItem="Tfd-ie-XAm" secondAttribute="trailing" constant="5" id="DKH-FE-LXd"/>
+                                                <constraint firstItem="h7B-tu-paj" firstAttribute="top" secondItem="WqB-Jn-mhH" secondAttribute="topMargin" constant="5" id="Koj-1H-P3M"/>
+                                                <constraint firstItem="Tfd-ie-XAm" firstAttribute="width" secondItem="WqB-Jn-mhH" secondAttribute="width" multiplier="0.3" id="S0e-ow-TNG"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="Tfd-ie-XAm" secondAttribute="bottom" constant="5" id="crH-vv-Gqe"/>
                                             </constraints>
                                         </view>
                                     </subviews>
@@ -74,6 +82,7 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="card" destination="WqB-Jn-mhH" id="0tE-iL-lX4"/>
+                                    <outlet property="foto" destination="Tfd-ie-XAm" id="965-43-N5J"/>
                                     <outlet property="txtName" destination="h7B-tu-paj" id="dXc-O7-pse"/>
                                     <segue destination="dg7-ma-HA9" kind="show" identifier="viewSegue" id="85D-eD-ZXm"/>
                                 </connections>
@@ -95,7 +104,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="03c-HJ-L2x" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="732" y="157"/>
+            <point key="canvasLocation" x="730.43478260869574" y="156.69642857142856"/>
         </scene>
         <!--Novo Brinquedo-->
         <scene sceneID="SYq-D6-oSz">
@@ -240,9 +249,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Novo Brinquedo" id="wLR-Le-Eql">
-                        <barButtonItem key="rightBarButtonItem" title="Salvar" id="mrJ-k0-9ec">
+                        <barButtonItem key="rightBarButtonItem" title="Próximo" id="mrJ-k0-9ec">
                             <connections>
-                                <action selector="btnSalvar:" destination="Sho-NG-aW5" id="g5n-YT-9cw"/>
+                                <action selector="btnProximo:" destination="Sho-NG-aW5" id="xb9-Oo-aw0"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -302,10 +311,10 @@
             </objects>
             <point key="canvasLocation" x="2706" y="-271"/>
         </scene>
-        <!--Camera View Controller-->
+        <!--Foto-->
         <scene sceneID="xTF-DK-B1D">
             <objects>
-                <viewController id="N2j-Yz-DDe" customClass="CameraViewController" customModule="MyToys" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="camera" title="Foto" id="N2j-Yz-DDe" customClass="CameraViewController" customModule="MyToys" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="fGH-nh-S7q">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -332,6 +341,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="M7i-qo-gAn"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Foto" id="fbs-Zr-e06">
+                        <barButtonItem key="rightBarButtonItem" title="Salvar" id="DNE-qh-d5s">
+                            <connections>
+                                <action selector="btnSalvar:" destination="N2j-Yz-DDe" id="v9i-l7-OVN"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="image" destination="s9k-C4-faX" id="gXJ-wz-0Pg"/>
                     </connections>
