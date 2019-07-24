@@ -15,11 +15,16 @@ class ToyTableViewController: UITableViewController, UITextFieldDelegate, UIText
     
     @IBOutlet weak var txtNome: UITextField!
     @IBOutlet weak var txtQuantidade: UITextField!
+    @IBOutlet weak var lblTamanho: UILabel!
+    @IBOutlet weak var lblFaixaEtaria: UILabel!
     @IBOutlet weak var txtViewObservacoes: UITextView!
+    
+    @IBOutlet weak var navigationBar: UINavigationItem!
     @IBOutlet weak var btnProximo: UIBarButtonItem!
     
     var tamanho:String = ""
     var faixaEtaria:String = ""
+    var edit:Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,6 +40,22 @@ class ToyTableViewController: UITableViewController, UITextFieldDelegate, UIText
         self.view.addGestureRecognizer(tap)
         
         
+        //Editando brinquedo
+        if edit == true{
+            txtNome.text = Toy.shared.nome
+            txtQuantidade.text = Toy.shared.quantidade?.description
+            lblTamanho.text = Toy.shared.tamanho
+            lblFaixaEtaria.text = Toy.shared.faixaEtaria
+            txtViewObservacoes.text = Toy.shared.observacoes
+            self.navigationBar.title = "Editar Brinquedo"
+            
+            Toy.shared.edit = true
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        lblTamanho.text = Toy.shared.tamanho
+        lblFaixaEtaria.text = Toy.shared.faixaEtaria
     }
     
     @objc func dismissKeyboard() {
@@ -80,7 +101,7 @@ class ToyTableViewController: UITableViewController, UITextFieldDelegate, UIText
     
     @IBAction func btnProximoAction(_ sender: Any) {
         Toy.shared.nome = txtNome.text
-        Toy.shared.quantidade = txtQuantidade.text
+        Toy.shared.quantidade = Int64(txtQuantidade.text!)
         Toy.shared.observacoes = txtViewObservacoes.text
         
         let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
@@ -104,6 +125,5 @@ class ToyTableViewController: UITableViewController, UITextFieldDelegate, UIText
             btnProximo.isEnabled = false
         }
     }
-    
     
 }

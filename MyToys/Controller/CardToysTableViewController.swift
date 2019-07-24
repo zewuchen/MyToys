@@ -7,38 +7,30 @@
 //
 
 import UIKit
-import CoreData
 
 class CardToysTableViewController: UITableViewController{
     
-    var context: NSManagedObjectContext?
-    var brinquedos:[Toys] = []
+    var brinquedos:[Toys] = Toy.shared.brinquedos
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-        fetchData()
 
         tableView.dataSource = self
         tableView.delegate = self
         
         navigationItem.title = "MyToys"
         tableView.rowHeight = 130
-
+        
     }
     
-    func fetchData(){
-        do{
-            brinquedos = try context!.fetch(Toys.fetchRequest())
-            brinquedos.reverse()
-            tableView.reloadData()
-        } catch{
-            print(error.localizedDescription)
-        }
+    func dados(){
+        Toy.shared.fetchData()
+        brinquedos = Toy.shared.brinquedos
+        tableView.reloadData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        fetchData()
+        dados()
     }
 
 
@@ -47,11 +39,17 @@ class CardToysTableViewController: UITableViewController{
         return brinquedos.count
     }
     
+    func stringFromDate(_ date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd MMM yyyy"
+        return formatter.string(from: date)
+    }
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Card") as! CardToysTableViewCell
         cell.txtName.text = brinquedos[indexPath.row].nome
+        cell.txtDate.text = stringFromDate(brinquedos[indexPath.row].dateAdd! as Date)
         if let foto =  brinquedos[indexPath.row].foto,  brinquedos[indexPath.row].foto != nil{
-            print("entrou aqui \(foto)")
             cell.foto.image = UIImage(contentsOfFile: foto)
         }
         
@@ -61,20 +59,34 @@ class CardToysTableViewController: UITableViewController{
     // Deleção de linha
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == UITableViewCell.EditingStyle.delete {
-            tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
+            
+            let alerta = UIAlertController(title: "Tem certeza que deseja excluir?", message: "Os dados não poderão ser recuperados", preferredStyle: .alert)
+            let aceitar = UIAlertAction(title: "Excluir", style: .destructive){
+                UIAlertAction in
+                
+                //tableView.deleteRows(at: [indexPath], with: .fade)
+                Toy.shared.delete(id: self.brinquedos[indexPath.row].id!)
+                self.dados()
+
+            }
+            let cancelar = UIAlertAction(title: "Cancelar", style: .cancel){
+                UIAlertAction in
+            }
+            
+            alerta.addAction(aceitar)
+            alerta.addAction(cancelar)
+            present(alerta, animated: true, completion: nil)
+            
         }
     }
-    
-//    override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
-//        if tableView.isEditing {
-//            return .delete
-//        }
-//        return .none
-//    }
     
     // Edição de linha
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        Toy.shared.fetchToy(id: brinquedos[indexPath.row].id!)
     }
 
 }

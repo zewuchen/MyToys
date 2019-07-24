@@ -78,7 +78,7 @@ class Camera: NSObject, UIImagePickerControllerDelegate, UINavigationControllerD
             self.viewController?.present(selecionador, animated: true, completion: nil)
         } else {
             //Gera alerta se a pessoa não possue câmera no dispositivo ou caso você rode em um simulador.
-            let alerta = UIAlertController(title: "Alerta", message: "Você não tem câmera", preferredStyle: .actionSheet)
+            let alerta = UIAlertController(title: "Alerta", message: "Não foi possível acessar sua câmera", preferredStyle: .actionSheet)
             //Cria uma outra ação
             let cancelar = UIAlertAction(title: "Cancelar", style: .cancel){
                 UIAlertAction in

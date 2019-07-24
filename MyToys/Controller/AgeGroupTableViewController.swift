@@ -10,8 +10,7 @@ import UIKit
 
 class AgeGroupTableViewController: UITableViewController {
     
-    let faixas:[String] = ["-6 meses", "+1 ano", "+3 anos", "+6 anos", "+9 anos", "+12 anos"]
-    var selecionado:Int = 0
+    let faixas:[String] = Toy.shared.faixas
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,7 +28,7 @@ class AgeGroupTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "optionCell") as! OptionTableViewCell
         cell.lblTextoFaixaEtaria.text = faixas[indexPath.row]
         
-        if indexPath.row == 0{
+        if faixas[indexPath.row] == Toy.shared.faixaEtaria{
             cell.accessoryType = .checkmark
         }
         
@@ -45,8 +44,8 @@ class AgeGroupTableViewController: UITableViewController {
         desmarca(tableView)
         tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
         
-        selecionado = indexPath.row
-        Toy.shared.faixaEtaria = faixas[selecionado]
+        Toy.shared.faixaEtaria = faixas[indexPath.row]
+        self.navigationController?.popViewController(animated: true)
     }
 
 }

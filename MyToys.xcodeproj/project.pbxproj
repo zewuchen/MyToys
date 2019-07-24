@@ -13,8 +13,6 @@
 		8C03CF6222DE5C66004FD3B6 /* OptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C03CF6122DE5C66004FD3B6 /* OptionTableViewCell.swift */; };
 		8C12942E22DE651A00B583AF /* AgeGroupTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C12942D22DE651A00B583AF /* AgeGroupTableViewController.swift */; };
 		8C12943422DF832A00B583AF /* Toy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C12943322DF832A00B583AF /* Toy.swift */; };
-		8C142BC622E0FD300089571B /* Toys+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C142BC422E0FD300089571B /* Toys+CoreDataClass.swift */; };
-		8C142BC722E0FD300089571B /* Toys+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C142BC522E0FD300089571B /* Toys+CoreDataProperties.swift */; };
 		8C142BCB22E1016B0089571B /* CameraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C142BCA22E1016B0089571B /* CameraController.swift */; };
 		8C142BCD22E1026D0089571B /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C142BCC22E1026D0089571B /* CameraViewController.swift */; };
 		8C9D663E22DCE33500763569 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9D663D22DCE33500763569 /* AppDelegate.swift */; };
@@ -24,6 +22,9 @@
 		8C9D664B22DCE33600763569 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C9D664922DCE33600763569 /* LaunchScreen.storyboard */; };
 		8C9D665622DCEDF400763569 /* CardToysTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9D665522DCEDF400763569 /* CardToysTableViewCell.swift */; };
 		8C9D665A22DCF43B00763569 /* CardToysTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9D665922DCF43B00763569 /* CardToysTableViewController.swift */; };
+		8CB12D3322E73F49006CA005 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB12D3222E73F49006CA005 /* DetailsViewController.swift */; };
+		8CF3788422E64F85005087B7 /* Toys+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF3788222E64F85005087B7 /* Toys+CoreDataClass.swift */; };
+		8CF3788522E64F85005087B7 /* Toys+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF3788322E64F85005087B7 /* Toys+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,8 +34,6 @@
 		8C03CF6122DE5C66004FD3B6 /* OptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionTableViewCell.swift; sourceTree = "<group>"; };
 		8C12942D22DE651A00B583AF /* AgeGroupTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgeGroupTableViewController.swift; sourceTree = "<group>"; };
 		8C12943322DF832A00B583AF /* Toy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toy.swift; sourceTree = "<group>"; };
-		8C142BC422E0FD300089571B /* Toys+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Toys+CoreDataClass.swift"; sourceTree = "<group>"; };
-		8C142BC522E0FD300089571B /* Toys+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Toys+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		8C142BCA22E1016B0089571B /* CameraController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraController.swift; sourceTree = "<group>"; };
 		8C142BCC22E1026D0089571B /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		8C9D663A22DCE33500763569 /* MyToys.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyToys.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -46,6 +45,9 @@
 		8C9D664C22DCE33600763569 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8C9D665522DCEDF400763569 /* CardToysTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardToysTableViewCell.swift; sourceTree = "<group>"; };
 		8C9D665922DCF43B00763569 /* CardToysTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardToysTableViewController.swift; sourceTree = "<group>"; };
+		8CB12D3222E73F49006CA005 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
+		8CF3788222E64F85005087B7 /* Toys+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Toys+CoreDataClass.swift"; sourceTree = "<group>"; };
+		8CF3788322E64F85005087B7 /* Toys+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Toys+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,8 +105,8 @@
 		8C9D665222DCECCA00763569 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				8C142BC422E0FD300089571B /* Toys+CoreDataClass.swift */,
-				8C142BC522E0FD300089571B /* Toys+CoreDataProperties.swift */,
+				8CF3788222E64F85005087B7 /* Toys+CoreDataClass.swift */,
+				8CF3788322E64F85005087B7 /* Toys+CoreDataProperties.swift */,
 				8C12943322DF832A00B583AF /* Toy.swift */,
 			);
 			path = Model;
@@ -128,6 +130,7 @@
 				8C12942D22DE651A00B583AF /* AgeGroupTableViewController.swift */,
 				8C142BCA22E1016B0089571B /* CameraController.swift */,
 				8C142BCC22E1026D0089571B /* CameraViewController.swift */,
+				8CB12D3222E73F49006CA005 /* DetailsViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -209,13 +212,14 @@
 				8C9D664622DCE33500763569 /* MyToys.xcdatamodeld in Sources */,
 				8C03CF5722DD1C3C004FD3B6 /* ToyTableViewController.swift in Sources */,
 				8C142BCD22E1026D0089571B /* CameraViewController.swift in Sources */,
+				8CF3788522E64F85005087B7 /* Toys+CoreDataProperties.swift in Sources */,
 				8C9D665622DCEDF400763569 /* CardToysTableViewCell.swift in Sources */,
+				8CF3788422E64F85005087B7 /* Toys+CoreDataClass.swift in Sources */,
 				8C9D663E22DCE33500763569 /* AppDelegate.swift in Sources */,
 				8C142BCB22E1016B0089571B /* CameraController.swift in Sources */,
-				8C142BC622E0FD300089571B /* Toys+CoreDataClass.swift in Sources */,
 				8C12943422DF832A00B583AF /* Toy.swift in Sources */,
+				8CB12D3322E73F49006CA005 /* DetailsViewController.swift in Sources */,
 				8C03CF6222DE5C66004FD3B6 /* OptionTableViewCell.swift in Sources */,
-				8C142BC722E0FD300089571B /* Toys+CoreDataProperties.swift in Sources */,
 				8C12942E22DE651A00B583AF /* AgeGroupTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

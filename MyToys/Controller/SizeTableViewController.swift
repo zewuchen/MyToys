@@ -10,8 +10,7 @@ import UIKit
 
 class SizeTableViewController: UITableViewController {
     
-    let tamanhos:[String] = ["Pequeno", "Medio", "Grande"]
-    var selecionado:Int = 0
+    let tamanhos:[String] = Toy.shared.tamanhos
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,7 +28,7 @@ class SizeTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "optionCell") as! OptionTableViewCell
         cell.lblTextoTamanho.text = tamanhos[indexPath.row]
         
-        if indexPath.row == 0{
+        if tamanhos[indexPath.row] == Toy.shared.tamanho{
             cell.accessoryType = .checkmark
         }
         
@@ -45,9 +44,8 @@ class SizeTableViewController: UITableViewController {
         desmarca(tableView)
         tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
         
-        selecionado = indexPath.row
-        Toy.shared.tamanho = tamanhos[selecionado]
-        //self.navigationController?.popViewController(animated: true)
+        Toy.shared.tamanho = tamanhos[indexPath.row]
+        self.navigationController?.popViewController(animated: true)
     }
     
 }
