@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		8C03CF5722DD1C3C004FD3B6 /* ToyTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C03CF5622DD1C3C004FD3B6 /* ToyTableViewController.swift */; };
-		8C03CF5A22DE45B8004FD3B6 /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8C03CF5922DE45B8004FD3B6 /* Lato-Regular.ttf */; };
 		8C03CF6022DE5C34004FD3B6 /* SizeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C03CF5F22DE5C34004FD3B6 /* SizeTableViewController.swift */; };
 		8C03CF6222DE5C66004FD3B6 /* OptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C03CF6122DE5C66004FD3B6 /* OptionTableViewCell.swift */; };
 		8C12942E22DE651A00B583AF /* AgeGroupTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C12942D22DE651A00B583AF /* AgeGroupTableViewController.swift */; };
@@ -30,7 +29,6 @@
 
 /* Begin PBXFileReference section */
 		8C03CF5622DD1C3C004FD3B6 /* ToyTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToyTableViewController.swift; sourceTree = "<group>"; };
-		8C03CF5922DE45B8004FD3B6 /* Lato-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Regular.ttf"; sourceTree = "<group>"; };
 		8C03CF5F22DE5C34004FD3B6 /* SizeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SizeTableViewController.swift; sourceTree = "<group>"; };
 		8C03CF6122DE5C66004FD3B6 /* OptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionTableViewCell.swift; sourceTree = "<group>"; };
 		8C12942D22DE651A00B583AF /* AgeGroupTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgeGroupTableViewController.swift; sourceTree = "<group>"; };
@@ -38,6 +36,7 @@
 		8C142BCA22E1016B0089571B /* CameraController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraController.swift; sourceTree = "<group>"; };
 		8C142BCC22E1026D0089571B /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		8C49790622EA18390011F21D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		8C49790922EA48660011F21D /* HVD_Comic_Serif_Pro.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = HVD_Comic_Serif_Pro.otf; sourceTree = "<group>"; };
 		8C9D663A22DCE33500763569 /* MyToys.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyToys.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C9D663D22DCE33500763569 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8C9D664222DCE33500763569 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -68,11 +67,20 @@
 		8C03CF5822DE4581004FD3B6 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
-				8C03CF5922DE45B8004FD3B6 /* Lato-Regular.ttf */,
+				8C49790922EA48660011F21D /* HVD_Comic_Serif_Pro.otf */,
 				8CB12D4622E8CAF6006CA005 /* SF-Pro-Display-Regular.otf */,
 				8CB12D4722E8CB06006CA005 /* SF-Pro-Display-Bold.otf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		8C49790822EA48270011F21D /* Singleton */ = {
+			isa = PBXGroup;
+			children = (
+				8C12943322DF832A00B583AF /* Toy.swift */,
+				8CB12D4822E8D0CC006CA005 /* Notification.swift */,
+			);
+			path = Singleton;
 			sourceTree = "<group>";
 		};
 		8C9D663122DCE33500763569 = {
@@ -94,6 +102,7 @@
 		8C9D663C22DCE33500763569 /* MyToys */ = {
 			isa = PBXGroup;
 			children = (
+				8C49790822EA48270011F21D /* Singleton */,
 				8C03CF5822DE4581004FD3B6 /* Fonts */,
 				8C9D665222DCECCA00763569 /* Model */,
 				8C9D665322DCECD000763569 /* View */,
@@ -113,8 +122,6 @@
 			children = (
 				8CF3788222E64F85005087B7 /* Toys+CoreDataClass.swift */,
 				8CF3788322E64F85005087B7 /* Toys+CoreDataProperties.swift */,
-				8C12943322DF832A00B583AF /* Toy.swift */,
-				8CB12D4822E8D0CC006CA005 /* Notification.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -203,7 +210,6 @@
 				8C9D664B22DCE33600763569 /* LaunchScreen.storyboard in Resources */,
 				8C49790722EA18390011F21D /* Images.xcassets in Resources */,
 				8C9D664322DCE33500763569 /* Main.storyboard in Resources */,
-				8C03CF5A22DE45B8004FD3B6 /* Lato-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
