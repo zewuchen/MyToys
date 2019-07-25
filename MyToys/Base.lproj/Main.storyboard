@@ -360,12 +360,19 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="s9k-C4-faX">
-                                <rect key="frame" x="0.0" y="44" width="414" height="448"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="537.5"/>
                                 <color key="backgroundColor" red="0.40784313729999999" green="0.69411764710000001" blue="0.95294117649999999" alpha="1" colorSpace="calibratedRGB"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pda-SK-6kB">
-                                <rect key="frame" x="197" y="680" width="22" height="22"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pda-SK-6kB">
+                                <rect key="frame" x="157" y="662" width="100" height="100"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="3vF-oZ-r0b"/>
+                                    <constraint firstAttribute="width" secondItem="Pda-SK-6kB" secondAttribute="height" multiplier="1:1" id="Obr-3S-eb2"/>
+                                    <constraint firstAttribute="width" constant="100" id="yul-B6-N4H"/>
+                                </constraints>
+                                <state key="normal" backgroundImage="Câmera Icon"/>
+                                <state key="disabled" image="Câmera Icon"/>
                                 <connections>
                                     <action selector="btnAddFoto:" destination="N2j-Yz-DDe" eventType="touchUpInside" id="asH-3l-gyY"/>
                                 </connections>
@@ -374,11 +381,11 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="s9k-C4-faX" firstAttribute="top" secondItem="M7i-qo-gAn" secondAttribute="top" id="1MA-Ay-sxT"/>
-                            <constraint firstItem="M7i-qo-gAn" firstAttribute="bottom" secondItem="Pda-SK-6kB" secondAttribute="bottom" constant="160" id="5lD-ld-T7j"/>
-                            <constraint firstItem="s9k-C4-faX" firstAttribute="height" secondItem="fGH-nh-S7q" secondAttribute="height" multiplier="0.5" id="90o-Rm-tS5"/>
+                            <constraint firstItem="s9k-C4-faX" firstAttribute="height" secondItem="fGH-nh-S7q" secondAttribute="height" multiplier="0.6" id="90o-Rm-tS5"/>
+                            <constraint firstItem="M7i-qo-gAn" firstAttribute="bottom" secondItem="Pda-SK-6kB" secondAttribute="bottom" constant="100" id="Afm-Az-T4A"/>
                             <constraint firstItem="M7i-qo-gAn" firstAttribute="trailing" secondItem="s9k-C4-faX" secondAttribute="trailing" id="EUC-aM-awp"/>
+                            <constraint firstItem="Pda-SK-6kB" firstAttribute="centerX" secondItem="fGH-nh-S7q" secondAttribute="centerX" id="XnP-Jd-ZJH"/>
                             <constraint firstItem="s9k-C4-faX" firstAttribute="leading" secondItem="M7i-qo-gAn" secondAttribute="leading" id="wQ5-jO-X30"/>
-                            <constraint firstItem="Pda-SK-6kB" firstAttribute="leading" secondItem="M7i-qo-gAn" secondAttribute="leading" constant="197" id="x6C-hJ-gex"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="M7i-qo-gAn"/>
                     </view>
@@ -631,6 +638,9 @@
             <point key="canvasLocation" x="2706" y="444"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Câmera Icon" width="1024" height="1024"/>
+    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="jQ1-ag-egi"/>
     </inferredMetricsTieBreakers>
