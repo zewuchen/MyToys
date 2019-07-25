@@ -43,11 +43,11 @@ class Toy{
     }
     
     func clear(){
-        self.faixaEtaria = ""
+        self.faixaEtaria = self.faixas[0]
         self.nome = ""
         self.observacoes = ""
         self.quantidade = 1
-        self.tamanho = ""
+        self.tamanho = self.tamanhos[0]
         self.foto = ""
         self.edit = false
     }
@@ -114,6 +114,7 @@ class Toy{
         do {
             try context.save()
             clear()
+            Notification.shared.create(id:id, nome: nome)
             print("Brinquedo cadastrado")
         } catch {
             let nserror = error as NSError
@@ -177,6 +178,7 @@ class Toy{
                 
                 do {
                     try managedContext.save()
+                    clear()
                     print("Brinquedo atualizado")
                 } catch let error as NSError {
                     print(error.code)
@@ -211,8 +213,10 @@ class Toy{
         do {
             let object = try managedContext.fetch(fetchRequest)
             if object.count == 1 {
-                let objectUpdate = object[0] as! NSManagedObject
-                context?.delete(objectUpdate)
+                let objectDelete = object[0] as! NSManagedObject
+                Notification.shared.delete(id: id)
+                deleteFoto(fileURL: (objectDelete as! Toys).foto)
+                context?.delete(objectDelete)
                 print("Brinquedo deletado")
             }
         } catch {

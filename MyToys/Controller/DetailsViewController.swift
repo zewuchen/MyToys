@@ -33,8 +33,13 @@ class DetailsViewController: UIViewController{
             self.imgDetail.image = UIImage(contentsOfFile: ima)
         }
         
+        guard let id = Toy.shared.id else {return}
+        guard let nome = Toy.shared.nome else {return}
+        guard let quantidade = Toy.shared.quantidade?.description else {return}
+        Notification.shared.update(id: id, nome: nome)
+        
         self.lblNome.text = Toy.shared.nome
-        self.lblQuantidade.text = Toy.shared.quantidade!.description
+        self.lblQuantidade.text = quantidade
         self.lblTamanho.text = Toy.shared.tamanho
         self.lblFaixaEtaria.text = Toy.shared.faixaEtaria
         self.txtObservacoes.text = Toy.shared.observacoes

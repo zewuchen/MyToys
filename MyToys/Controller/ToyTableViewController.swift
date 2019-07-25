@@ -50,6 +50,8 @@ class ToyTableViewController: UITableViewController, UITextFieldDelegate, UIText
             self.navigationBar.title = "Editar Brinquedo"
             
             Toy.shared.edit = true
+        }else{
+            Toy.shared.clear()
         }
     }
     
