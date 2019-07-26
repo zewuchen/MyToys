@@ -87,7 +87,10 @@ class Toy{
         guard let context = self.context else {return}
         guard let nome = self.nome else {return}
         guard let faixaEtaria = self.faixaEtaria else {return}
-        guard let observacoes = self.observacoes else {return}
+        guard var observacoes = self.observacoes else {return}
+        if observacoes == "Observações"{
+            observacoes = ""
+        }
         guard let quantidade = self.quantidade else {return}
         guard let tamanho = self.tamanho else {return}
         guard let foto = self.foto else {return}
@@ -150,7 +153,10 @@ class Toy{
     func update(id: String) {
         guard let nome = self.nome else {return}
         guard let faixaEtaria = self.faixaEtaria else {return}
-        guard let observacoes = self.observacoes else {return}
+        guard var observacoes = self.observacoes else {return}
+        if observacoes == "Observações"{
+            observacoes = ""
+        }
         guard let quantidade = self.quantidade else {return}
         guard let tamanho = self.tamanho else {return}
         guard let foto = self.foto else {return}

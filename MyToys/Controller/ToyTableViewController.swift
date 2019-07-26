@@ -46,7 +46,9 @@ class ToyTableViewController: UITableViewController, UITextFieldDelegate, UIText
             txtQuantidade.text = Toy.shared.quantidade?.description
             lblTamanho.text = Toy.shared.tamanho
             lblFaixaEtaria.text = Toy.shared.faixaEtaria
-            txtViewObservacoes.text = Toy.shared.observacoes
+            if Toy.shared.observacoes != ""{
+                txtViewObservacoes.text = Toy.shared.observacoes
+            }
             self.navigationBar.title = "Editar Brinquedo"
             
             Toy.shared.edit = true
@@ -58,6 +60,11 @@ class ToyTableViewController: UITableViewController, UITextFieldDelegate, UIText
     override func viewWillAppear(_ animated: Bool) {
         lblTamanho.text = Toy.shared.tamanho
         lblFaixaEtaria.text = Toy.shared.faixaEtaria
+        
+        if txtViewObservacoes.text == ""{
+            txtViewObservacoes.text = "Observações"
+            txtViewObservacoes.textColor = .lightGray
+        }
     }
     
     @objc func dismissKeyboard() {
@@ -98,6 +105,7 @@ class ToyTableViewController: UITableViewController, UITextFieldDelegate, UIText
             textView.text = "Observações"
             textView.textColor = .lightGray
         }
+        checkObservacoes()
         textView.resignFirstResponder()
     }
     
@@ -122,6 +130,13 @@ class ToyTableViewController: UITableViewController, UITextFieldDelegate, UIText
     
     func checkInputValues() {
         if txtNome.text != nil, txtNome.text != "", txtQuantidade.text != nil, txtQuantidade.text != "0", txtQuantidade.text != ""{
+            btnProximo.isEnabled = true
+        }else{
+            btnProximo.isEnabled = false
+        }
+    }
+    func checkObservacoes() {
+        if txtViewObservacoes.text != Toy.shared.observacoes, txtNome.text != nil, txtNome.text != "", txtQuantidade.text != nil, txtQuantidade.text != "0", txtQuantidade.text != ""{
             btnProximo.isEnabled = true
         }else{
             btnProximo.isEnabled = false
