@@ -19,7 +19,7 @@ class CardToysTableViewCell: UITableViewCell {
             card.layer.cornerRadius = 13
             card.layer.borderWidth = 1
             card.layer.borderColor = #colorLiteral(red: 0.4748159051, green: 0.75166291, blue: 0.9633973241, alpha: 1)
-        
+            card.layer.backgroundColor = #colorLiteral(red: 0.9843137255, green: 0.9764705882, blue: 1, alpha: 1)
         }
     }
     

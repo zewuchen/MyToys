@@ -118,7 +118,7 @@ class Toy{
             try context.save()
             clear()
             Notification.shared.create(id:id, nome: nome)
-            print("Brinquedo cadastrado")
+            print("Brinquedo cadastrado, ID: \(id), NOME:\(nome)")
         } catch {
             let nserror = error as NSError
             fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
@@ -185,7 +185,7 @@ class Toy{
                 do {
                     try managedContext.save()
                     clear()
-                    print("Brinquedo atualizado")
+                    print("Brinquedo atualizado, ID: \(id), NOME:\(nome)")
                 } catch let error as NSError {
                     print(error.code)
                 }
@@ -223,7 +223,7 @@ class Toy{
                 Notification.shared.delete(id: id)
                 deleteFoto(fileURL: (objectDelete as! Toys).foto)
                 context?.delete(objectDelete)
-                print("Brinquedo deletado")
+                print("Brinquedo deletado, ID: \(id)")
             }
         } catch {
             print(error)

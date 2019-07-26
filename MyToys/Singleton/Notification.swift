@@ -39,7 +39,7 @@ class Notification:NSObject,UNUserNotificationCenterDelegate{
         content.badge = UIApplication.shared.applicationIconBadgeNumber + 1 as NSNumber
         //Trigger
         let data1 = Date()
-        guard let data2 = Calendar.current.date(byAdding: .second, value: 60, to: Date()) else {return}
+        guard let data2 = Calendar.current.date(byAdding: .hour, value: 60, to: Date()) else {return}
         let intervalo = data2.timeIntervalSince(data1)
             //Se quiser repetir a trigger, precisa ser mais de 60 segundos
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: intervalo, repeats: true)
@@ -60,7 +60,7 @@ class Notification:NSObject,UNUserNotificationCenterDelegate{
                     if let error = error {
                         print(error.localizedDescription)
                     }
-                    print("Notificação cadastrada")
+                    print("Notificação cadastrada, ID: \(id), NOME: \(nome)")
                 }
                 
             } else {
@@ -83,7 +83,7 @@ class Notification:NSObject,UNUserNotificationCenterDelegate{
             let notificationCenter = UNUserNotificationCenter.current()
             notificationCenter.delegate = self
             notificationCenter.removePendingNotificationRequests(withIdentifiers: [id])
-            print("Notificação deletada")
+            print("Notificação deletada, ID: \(id)")
         } catch{
             print(error.localizedDescription)
         }
