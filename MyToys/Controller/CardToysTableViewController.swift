@@ -19,7 +19,7 @@ class CardToysTableViewController: UITableViewController{
         tableView.delegate = self
         
         navigationItem.title = "MyToys"
-        tableView.rowHeight = 130
+        tableView.rowHeight = 180
         
     }
     
