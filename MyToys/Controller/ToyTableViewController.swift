@@ -67,6 +67,13 @@ class ToyTableViewController: UITableViewController, UITextFieldDelegate, UIText
         }
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if (indexPath == [1, 0] || indexPath == [1, 1]), edit == true{
+            btnProximo.isEnabled = true
+        }
+    }
+    
+    
     @objc func dismissKeyboard() {
         self.view.endEditing(true)
     }
