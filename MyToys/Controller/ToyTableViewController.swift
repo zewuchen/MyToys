@@ -11,7 +11,7 @@ import UIKit
 class ToyTableViewController: UITableViewController, UITextFieldDelegate, UITextViewDelegate{
 
     let limiteNome = 35
-    let limiteQuantidade = 10
+    let limiteQuantidade = 5
     
     @IBOutlet weak var txtNome: UITextField!
     @IBOutlet weak var txtQuantidade: UITextField!

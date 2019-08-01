@@ -17,6 +17,27 @@ class DetailsViewController: UIViewController{
     @IBOutlet weak var lblFaixaEtaria: UILabel!
     @IBOutlet weak var txtObservacoes: UITextView!
     
+    //ViewCards
+    @IBOutlet weak var view1: UIView! {
+        didSet {
+            view1.layer.cornerRadius = 13
+            view1.layer.borderWidth = 1
+        }
+    }
+    @IBOutlet weak var view2: UIView! {
+        didSet {
+            view2.layer.cornerRadius = 13
+            view2.layer.borderWidth = 1
+        }
+    }
+    @IBOutlet weak var view3: UIView! {
+        didSet {
+            view3.layer.cornerRadius = 13
+            view3.layer.borderWidth = 1
+
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     
@@ -39,10 +60,18 @@ class DetailsViewController: UIViewController{
         Notification.shared.update(id: id, nome: nome)
         
         self.lblNome.text = Toy.shared.nome
-        self.lblQuantidade.text = quantidade
+        self.lblQuantidade.text = "\(quantidade) \n unidades"
         self.lblTamanho.text = Toy.shared.tamanho
-        self.lblFaixaEtaria.text = Toy.shared.faixaEtaria
-        self.txtObservacoes.text = Toy.shared.observacoes
+        
+        let faixaEtaria = Toy.shared.faixaEtaria
+        guard let result = faixaEtaria?.split(separator: " ") else {return}
+        self.lblFaixaEtaria.text = "\(result[0]) \n \(result[1])"
+        
+        if Toy.shared.observacoes == ""{
+            self.txtObservacoes.text = "Não há observações."
+        }else{
+            self.txtObservacoes.text = Toy.shared.observacoes
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {

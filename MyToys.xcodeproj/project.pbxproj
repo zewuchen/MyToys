@@ -36,7 +36,6 @@
 		8C142BCA22E1016B0089571B /* CameraController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraController.swift; sourceTree = "<group>"; };
 		8C142BCC22E1026D0089571B /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		8C49790622EA18390011F21D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		8C49790922EA48660011F21D /* HVD_Comic_Serif_Pro.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = HVD_Comic_Serif_Pro.otf; sourceTree = "<group>"; };
 		8C9D663A22DCE33500763569 /* MyToys.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyToys.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C9D663D22DCE33500763569 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8C9D664222DCE33500763569 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -67,7 +66,6 @@
 		8C03CF5822DE4581004FD3B6 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
-				8C49790922EA48660011F21D /* HVD_Comic_Serif_Pro.otf */,
 				8CB12D4622E8CAF6006CA005 /* SF-Pro-Display-Regular.otf */,
 				8CB12D4722E8CB06006CA005 /* SF-Pro-Display-Bold.otf */,
 			);
