@@ -64,13 +64,13 @@
                                                     <color key="backgroundColor" red="0.40784313729999999" green="0.69411764710000001" blue="0.95294117649999999" alpha="1" colorSpace="calibratedRGB"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Desabilitado" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h7B-tu-paj">
-                                                    <rect key="frame" x="28" y="128" width="88.5" height="20.5"/>
+                                                    <rect key="frame" x="28" y="128" width="94.5" height="32"/>
                                                     <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.031372549019607843" blue="0.027450980392156862" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="26 Jul 2019" textAlignment="right" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wrJ-WS-bVC">
-                                                    <rect key="frame" x="274.5" y="128" width="89.5" height="20"/>
+                                                    <rect key="frame" x="274.5" y="128" width="89.5" height="32"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.031372549019607843" blue="0.027450980392156862" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -79,12 +79,14 @@
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstItem="h7B-tu-paj" firstAttribute="top" secondItem="Tfd-ie-XAm" secondAttribute="bottom" id="16Z-Uk-bm3"/>
+                                                <constraint firstAttribute="bottom" secondItem="wrJ-WS-bVC" secondAttribute="bottom" id="2BW-7e-W5I"/>
                                                 <constraint firstItem="Tfd-ie-XAm" firstAttribute="height" secondItem="WqB-Jn-mhH" secondAttribute="height" multiplier="0.8" id="3dA-GE-L3h"/>
                                                 <constraint firstItem="Tfd-ie-XAm" firstAttribute="leading" secondItem="WqB-Jn-mhH" secondAttribute="leading" id="R4l-IR-tY9"/>
                                                 <constraint firstItem="h7B-tu-paj" firstAttribute="leading" secondItem="WqB-Jn-mhH" secondAttribute="leadingMargin" constant="20" id="SVh-7S-IBo"/>
                                                 <constraint firstAttribute="trailing" secondItem="wrJ-WS-bVC" secondAttribute="trailing" constant="20" id="YFD-Y3-Eld"/>
                                                 <constraint firstAttribute="trailing" secondItem="Tfd-ie-XAm" secondAttribute="trailing" id="YvC-dJ-Ntv"/>
                                                 <constraint firstItem="wrJ-WS-bVC" firstAttribute="top" secondItem="Tfd-ie-XAm" secondAttribute="bottom" id="dVt-mT-cCh"/>
+                                                <constraint firstAttribute="bottom" secondItem="h7B-tu-paj" secondAttribute="bottom" id="lOU-ft-nSX"/>
                                                 <constraint firstItem="Tfd-ie-XAm" firstAttribute="top" secondItem="WqB-Jn-mhH" secondAttribute="top" id="qWH-Tc-lsh"/>
                                             </constraints>
                                         </view>

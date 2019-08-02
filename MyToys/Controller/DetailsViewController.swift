@@ -60,7 +60,12 @@ class DetailsViewController: UIViewController{
         Notification.shared.update(id: id, nome: nome)
         
         self.lblNome.text = Toy.shared.nome
-        self.lblQuantidade.text = "\(quantidade) \n unidades"
+        if Int(quantidade)! > 1{
+            self.lblQuantidade.text = "\(quantidade) \n unidades"
+        }else{
+            self.lblQuantidade.text = "\(quantidade) \n unidade"
+        }
+        
         self.lblTamanho.text = Toy.shared.tamanho
         
         let faixaEtaria = Toy.shared.faixaEtaria
