@@ -51,7 +51,7 @@ class CardToysTableViewController: UITableViewController{
         cell.txtName.text = ""
         cell.txtDate.text = stringFromDate(brinquedos[indexPath.row].dateAdd! as Date)
         if let foto =  brinquedos[indexPath.row].foto,  brinquedos[indexPath.row].foto != nil{
-            cell.foto.image = UIImage(contentsOfFile: foto)
+            cell.foto.image = UIImage(contentsOfFile: FileHelper.getFile(filePathWithoutExtension: foto)!)
         }
         
         return cell

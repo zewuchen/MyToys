@@ -53,34 +53,14 @@ class Toy{
     }
     
     func saveFoto(imagem:UIImage){
-        let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-        //let fileName = "\(Date()).jpg"
-        let fileName = "\(UUID()).jpg"
-        
-        let fileURL = documentsDirectory.appendingPathComponent(fileName)
-        if let data = imagem.jpegData(compressionQuality:  1.0), !FileManager.default.fileExists(atPath: fileURL.path) {
-            do {
-                try data.write(to: fileURL)
-                self.foto = fileURL.path
-                print("Foto salva")
-            } catch {
-                print("Erro ao salvar a foto:", error)
-            }
-        }
+        let fileName = UUID().uuidString
+        FileHelper.saveImage(image: imagem, nameWithoutExtension: fileName)
+        self.foto = fileName
     }
     
     func deleteFoto(fileURL:String?) {
-        let fileManager = FileManager.default
-        
         guard let fileURL = fileURL else {return}
-        let path = URL(fileURLWithPath: fileURL)
-        
-        do {
-            try fileManager.removeItem(at: path)
-            print("Foto excluída")
-        } catch {
-            print("Erro ao excluir a foto:", error)
-        }
+        FileHelper.deleteImage(filePathWithoutExtension: fileURL)
     }
     
     func save(){

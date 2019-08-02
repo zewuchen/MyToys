@@ -22,8 +22,8 @@ class CameraViewController: UIViewController {
         btnSave.isEnabled = false
 
         if let ima = Toy.shared.foto, Toy.shared.edit == true{
-            self.image.image = UIImage(contentsOfFile: ima)
-            self.foto = UIImage(contentsOfFile: ima)
+            self.image.image = UIImage(contentsOfFile: FileHelper.getFile(filePathWithoutExtension: ima)!)
+            self.foto = UIImage(contentsOfFile: FileHelper.getFile(filePathWithoutExtension: ima)!)
             self.btnSave.isEnabled = true
         }
     }

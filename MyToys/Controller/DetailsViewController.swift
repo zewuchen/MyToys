@@ -51,7 +51,7 @@ class DetailsViewController: UIViewController{
         self.navigationController?.view.tintColor = #colorLiteral(red: 0.4748159051, green: 0.75166291, blue: 0.9633973241, alpha: 1)
         
         if let ima = Toy.shared.foto{
-            self.imgDetail.image = UIImage(contentsOfFile: ima)
+            self.imgDetail.image = UIImage(contentsOfFile: FileHelper.getFile(filePathWithoutExtension: ima)!)
         }
         
         guard let id = Toy.shared.id else {return}
