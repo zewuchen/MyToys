@@ -48,7 +48,7 @@ class DetailsViewController: UIViewController{
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.isTranslucent = true
         self.navigationController?.view.backgroundColor = .clear
-        self.navigationController?.view.tintColor = .white
+        self.navigationController?.view.tintColor = #colorLiteral(red: 0.4748159051, green: 0.75166291, blue: 0.9633973241, alpha: 1)
         
         if let ima = Toy.shared.foto{
             self.imgDetail.image = UIImage(contentsOfFile: ima)

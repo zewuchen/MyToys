@@ -45,8 +45,6 @@
 		8C9D665522DCEDF400763569 /* CardToysTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardToysTableViewCell.swift; sourceTree = "<group>"; };
 		8C9D665922DCF43B00763569 /* CardToysTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardToysTableViewController.swift; sourceTree = "<group>"; };
 		8CB12D3222E73F49006CA005 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
-		8CB12D4622E8CAF6006CA005 /* SF-Pro-Display-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Regular.otf"; sourceTree = "<group>"; };
-		8CB12D4722E8CB06006CA005 /* SF-Pro-Display-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Bold.otf"; sourceTree = "<group>"; };
 		8CB12D4822E8D0CC006CA005 /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		8CF3788222E64F85005087B7 /* Toys+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Toys+CoreDataClass.swift"; sourceTree = "<group>"; };
 		8CF3788322E64F85005087B7 /* Toys+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Toys+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -63,15 +61,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		8C03CF5822DE4581004FD3B6 /* Fonts */ = {
-			isa = PBXGroup;
-			children = (
-				8CB12D4622E8CAF6006CA005 /* SF-Pro-Display-Regular.otf */,
-				8CB12D4722E8CB06006CA005 /* SF-Pro-Display-Bold.otf */,
-			);
-			path = Fonts;
-			sourceTree = "<group>";
-		};
 		8C49790822EA48270011F21D /* Singleton */ = {
 			isa = PBXGroup;
 			children = (
@@ -101,7 +90,6 @@
 			isa = PBXGroup;
 			children = (
 				8C49790822EA48270011F21D /* Singleton */,
-				8C03CF5822DE4581004FD3B6 /* Fonts */,
 				8C9D665222DCECCA00763569 /* Model */,
 				8C9D665322DCECD000763569 /* View */,
 				8C9D665422DCECD700763569 /* Controller */,
