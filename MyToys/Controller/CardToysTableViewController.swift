@@ -11,6 +11,7 @@ import UIKit
 class CardToysTableViewController: UITableViewController{
     
     var brinquedos:[Toys] = Toy.shared.brinquedos
+    var wallpaper:UIImageView = UIImageView(image: UIImage(named: "wallpaper"))
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +32,11 @@ class CardToysTableViewController: UITableViewController{
     
     override func viewWillAppear(_ animated: Bool) {
         dados()
+        setWallpaper()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        wallpaper.removeFromSuperview()
     }
 
 
@@ -47,10 +53,11 @@ class CardToysTableViewController: UITableViewController{
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Card") as! CardToysTableViewCell
+
         //cell.txtName.text = brinquedos[indexPath.row].nome
         cell.txtName.text = ""
         cell.txtDate.text = stringFromDate(brinquedos[indexPath.row].dateAdd! as Date)
-        if let foto =  brinquedos[indexPath.row].foto,  brinquedos[indexPath.row].foto != nil{
+        if let foto =  brinquedos[indexPath.row].foto{
             cell.foto.image = UIImage(contentsOfFile: FileHelper.getFile(filePathWithoutExtension: foto)!)
         }
         
@@ -68,7 +75,7 @@ class CardToysTableViewController: UITableViewController{
                 //tableView.deleteRows(at: [indexPath], with: .fade)
                 Toy.shared.delete(id: self.brinquedos[indexPath.row].id!)
                 self.dados()
-
+                self.setWallpaper()
             }
             let cancelar = UIAlertAction(title: "Cancelar", style: .cancel){
                 UIAlertAction in
@@ -78,6 +85,15 @@ class CardToysTableViewController: UITableViewController{
             alerta.addAction(cancelar)
             present(alerta, animated: true, completion: nil)
             
+        }
+    }
+    
+    func setWallpaper(){
+        if brinquedos.count == 0 {
+            wallpaper.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height/2)
+            self.view.addSubview(wallpaper)
+            wallpaper.center.x = self.view.center.x
+            wallpaper.center.y = self.view.center.y - 100
         }
     }
     
