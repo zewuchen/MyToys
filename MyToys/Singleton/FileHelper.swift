@@ -11,14 +11,27 @@ import UIKit
 
 class FileHelper{
     private static let fileManager:FileManager = FileManager()
-    
+
+    /**
+    *Retorna o diretório onde está salvando as fotos dos brinquedos*
+    - Parameters: Nenhum
+    - Returns:
+        - URL: caminho da foto brinquedo
+    */
     public static func getDocumentsDirectory() -> URL{
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         return paths[0]
     }
-    
+
+    /**
+    *Salva a imagem passada com seu nome*
+    - Parameters:
+        - image: imagem a ser salva
+        - nameWithoutExtension: nome da foto
+    - Returns: Nenhum
+    */
     public static func saveImage(image:UIImage, nameWithoutExtension:String){
-        
+
         if let data = image.jpegData(compressionQuality: 1.0) {
             let filename = getDocumentsDirectory().appendingPathComponent("\(nameWithoutExtension).jpg")
             do{
@@ -30,7 +43,13 @@ class FileHelper{
             }
         }
     }
-    
+
+    /**
+    *Retorna a imagem do brinquedo salva*
+    - Parameters:
+        - filePathWithoutExtension: nome da imagem que foi salva
+    - Returns: String
+    */
     public static func getFile(filePathWithoutExtension:String) -> String?{
         let imagePath:URL = getDocumentsDirectory().appendingPathComponent("\(filePathWithoutExtension).jpg")
         if fileManager.fileExists(atPath: imagePath.relativePath){
@@ -40,7 +59,13 @@ class FileHelper{
             return nil
         }
     }
-    
+
+    /**
+    *Deleta a foto que foi salva*
+    - Parameters:
+        - filePathWithoutExtension: nome da imagem que foi salva
+    - Returns: Nenhum
+    */
     public static func deleteImage(filePathWithoutExtension:String){
         do{
             let imagePath:URL = getDocumentsDirectory().appendingPathComponent("\(filePathWithoutExtension).jpg")

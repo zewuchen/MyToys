@@ -3,7 +3,7 @@ import UIKit
 import Foundation
 
 class Toy{
-    
+
     static let shared:Toy = Toy()
 
     public var faixaEtaria: String?
@@ -15,13 +15,13 @@ class Toy{
     public var id: String?
     public var dateAdd: NSDate?
     public var dateLast: NSDate?
-    
+
     public var brinquedos:[Toys]
     public var tamanhos:[String]
     public var faixas:[String]
     public var edit:Bool
     var context: NSManagedObjectContext?
-    
+
     private init(){
         self.nome = ""
         self.observacoes = ""
@@ -36,12 +36,17 @@ class Toy{
         self.dateAdd = Date() as NSDate
         self.dateLast = Date() as NSDate
         self.edit = false
-        
-        
+
+
         self.context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         self.fetchData()
     }
-    
+
+    /**
+    *Limpa os dados do brinquedo*
+    - Parameters: Nenhum
+    - Returns: Nenhum
+    */
     func clear(){
         self.faixaEtaria = self.faixas[0]
         self.nome = ""
@@ -51,18 +56,35 @@ class Toy{
         self.foto = ""
         self.edit = false
     }
-    
+
+    /**
+    *Salva a foto do brinquedo pelo FileHelper e gera um UUID para o nome da imagem*
+    - Parameters:
+        - imagem: UIImage que contém a imagem a ser salva
+    - Returns: Nenhum
+    */
     func saveFoto(imagem:UIImage){
         let fileName = UUID().uuidString
         FileHelper.saveImage(image: imagem, nameWithoutExtension: fileName)
         self.foto = fileName
     }
-    
+
+    /**
+    *Deleta a foto do brinquedo pelo FileHelper*
+    - Parameters:
+        - fileURL: caminho da imagem salva
+    - Returns: Nenhum
+    */
     func deleteFoto(fileURL:String?) {
         guard let fileURL = fileURL else {return}
         FileHelper.deleteImage(filePathWithoutExtension: fileURL)
     }
-    
+
+    /**
+    *Salva as informações do brinquedo*
+    - Parameters: Nenhum
+    - Returns: Nenhum
+    */
     func save(){
         guard let context = self.context else {return}
         guard let nome = self.nome else {return}
@@ -80,10 +102,10 @@ class Toy{
         guard let id = self.id else {return}
         guard let dateAdd = self.dateAdd else {return}
         guard let dateLast = self.dateLast else {return}
-        
-        
+
+
         let registry = NSEntityDescription.insertNewObject(forEntityName: "Toys", into: context) as! Toys
-        
+
         registry.nome = nome
         registry.faixaEtaria = faixaEtaria
         registry.observacoes = observacoes
@@ -93,7 +115,7 @@ class Toy{
         registry.id = id
         registry.dateAdd = dateAdd
         registry.dateLast = dateLast
-        
+
         do {
             try context.save()
             clear()
@@ -104,7 +126,12 @@ class Toy{
             fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
         }
     }
-    
+
+    /**
+    *Puxa os dados dos brinquedos já armazenados*
+    - Parameters: Nenhum
+    - Returns: Nenhum
+    */
     func fetchData(){
         do{
             brinquedos = try context!.fetch(Toys.fetchRequest())
@@ -113,7 +140,13 @@ class Toy{
             print(error.localizedDescription)
         }
     }
-    
+
+    /**
+     *Puxa os dados de um brinquedo específico que já foi feito o request dos dados*
+     - Parameters:
+        - id: id do brinquedo
+     - Returns: Nenhum
+     */
     func fetchToy(id:String){
         for i in brinquedos{
             if i.id == id{
@@ -129,7 +162,13 @@ class Toy{
             }
         }
     }
-    
+
+    /**
+    *Atualiza os dados de um brinquedo específico*
+    - Parameters:
+        - id: id do brinquedo
+    - Returns: Nenhum
+    */
     func update(id: String) {
         guard let nome = self.nome else {return}
         guard let faixaEtaria = self.faixaEtaria else {return}
@@ -142,7 +181,7 @@ class Toy{
         guard let foto = self.foto else {return}
         self.dateLast = Date() as NSDate
         guard let dateLast = self.dateLast else {return}
-        
+
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return
         }
@@ -161,7 +200,7 @@ class Toy{
                 objectUpdate.setValue(tamanho, forKey: "tamanho")
                 objectUpdate.setValue(foto, forKey: "foto")
                 objectUpdate.setValue(dateLast, forKey: "dateLast")
-                
+
                 do {
                     try managedContext.save()
                     clear()
@@ -174,7 +213,13 @@ class Toy{
             print(error)
         }
     }
-    
+
+    /**
+    *Deleta os dados de um brinquedo específico*
+    - Parameters:
+        - id: id do brinquedo
+    - Returns: Nenhum
+    */
     func delete(id:String){
 
 //        guard let context = self.context else {return}
@@ -188,7 +233,7 @@ class Toy{
 //        } catch{
 //            print(error.localizedDescription)
 //        }
-        
+
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return
         }
@@ -209,5 +254,5 @@ class Toy{
             print(error)
         }
     }
-    
+
 }
