@@ -10,7 +10,6 @@ import UIKit
 
 class CardToysCollectionViewCell: UICollectionViewCell {
     
-    
     @IBOutlet weak var view: UIView! {
         didSet {
             view.layer.cornerRadius = 16
@@ -21,6 +20,25 @@ class CardToysCollectionViewCell: UICollectionViewCell {
     }
     @IBOutlet weak var image: UIImageView!
     @IBOutlet weak var date: UILabel!
+    @IBOutlet weak var checkmarkLabel: UILabel! {
+        didSet {
+            checkmarkLabel.layer.cornerRadius = 12
+        }
+    }
     
+    var isInEditingMode: Bool = false {
+        didSet {
+            checkmarkLabel.isHidden = !isInEditingMode
+        }
+    }
+    
+    override var isSelected: Bool {
+        didSet {
+            if isInEditingMode {
+                checkmarkLabel.text = isSelected ? "✓" : ""
+                checkmarkLabel.backgroundColor = isSelected ? #colorLiteral(red: 0.1215686277, green: 0.01176470611, blue: 0.4235294163, alpha: 1) : UIColor.clear
+            }
+        }
+    }
     
 }
