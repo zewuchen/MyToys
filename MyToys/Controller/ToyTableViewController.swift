@@ -94,6 +94,12 @@ class ToyTableViewController: UITableViewController, UITextFieldDelegate, UIText
         animateImageView(direcao: "Direito")
     }
     
+    /**
+    *Converte o formato da data*
+    - Parameters:
+        - direcao: string informando a direcao do swipe na UIImage
+    - Returns: Nenhum
+    */
     func animateImageView(direcao: String) {
         CATransaction.begin()
 
@@ -102,10 +108,11 @@ class ToyTableViewController: UITableViewController, UITextFieldDelegate, UIText
         transition.type = CATransitionType.push
         if direcao == "Direito" {
             transition.subtype = CATransitionSubtype.fromLeft
+            indexFoto = indexFoto > 0 ? indexFoto - 1 : images.count - 1
         } else {
             transition.subtype = CATransitionSubtype.fromRight
+            indexFoto = indexFoto < images.count - 1 ? indexFoto + 1 : 0
         }
-        indexFoto = indexFoto < images.count - 1 ? indexFoto + 1 : 0
         imgFoto.layer.add(transition, forKey: kCATransition)
         if images.count != 0 {
             imgFoto.image = images[indexFoto]
