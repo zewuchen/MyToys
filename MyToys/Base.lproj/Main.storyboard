@@ -142,12 +142,12 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="300"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="IIx-4t-lgq">
+                                                <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Picture Icon" translatesAutoresizingMaskIntoConstraints="NO" id="IIx-4t-lgq">
                                                     <rect key="frame" x="0.0" y="-50" width="414" height="350"/>
-                                                    <color key="backgroundColor" red="0.58081901069999997" green="0.088427625600000004" blue="0.31863921880000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </imageView>
-                                                <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="LGE-mT-WiV">
-                                                    <rect key="frame" x="187.5" y="229" width="39" height="37"/>
+                                                <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="LGE-mT-WiV">
+                                                    <rect key="frame" x="207" y="266" width="0.0" height="0.0"/>
                                                 </pageControl>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g9N-qm-OZw">
                                                     <rect key="frame" x="342" y="228" width="56" height="56"/>
@@ -164,7 +164,7 @@
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uDT-IM-szQ">
                                                     <rect key="frame" x="16" y="228" width="56" height="56"/>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="backgroundColor" red="0.90196078431372551" green="0.90196078431372551" blue="0.9137254901960784" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="56" id="ZsK-N5-vMZ"/>
                                                         <constraint firstAttribute="height" constant="56" id="iHF-8b-ObA"/>
@@ -625,7 +625,7 @@
                                         <subviews>
                                             <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Picture Icon" translatesAutoresizingMaskIntoConstraints="NO" id="Dy7-5J-G9O">
                                                 <rect key="frame" x="0.0" y="-90" width="414" height="404"/>
-                                                <color key="backgroundColor" red="0.63529411759999999" green="0.63921568630000003" blue="0.73333333329999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Carrinho Hot Wheels" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vtl-3K-mYK">
                                                 <rect key="frame" x="15" y="334" width="384" height="32.5"/>

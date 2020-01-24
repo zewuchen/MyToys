@@ -133,23 +133,25 @@ class DetailsViewController: UIViewController{
     - Returns: Nenhum
     */
     func animateImageView(direcao: String) {
-        CATransaction.begin()
+        if images.count > 1 {
+            CATransaction.begin()
 
-        CATransaction.setAnimationDuration(animationDuration)
+            CATransaction.setAnimationDuration(animationDuration)
 
-        transition.type = CATransitionType.push
-        if direcao == "Direito" {
-            transition.subtype = CATransitionSubtype.fromLeft
-            indexFoto = indexFoto > 0 ? indexFoto - 1 : images.count - 1
-        } else {
-            transition.subtype = CATransitionSubtype.fromRight
-            indexFoto = indexFoto < images.count - 1 ? indexFoto + 1 : 0
+            transition.type = CATransitionType.push
+            if direcao == "Direito" {
+                transition.subtype = CATransitionSubtype.fromLeft
+                indexFoto = indexFoto > 0 ? indexFoto - 1 : images.count - 1
+            } else {
+                transition.subtype = CATransitionSubtype.fromRight
+                indexFoto = indexFoto < images.count - 1 ? indexFoto + 1 : 0
+            }
+            imgDetail.layer.add(transition, forKey: kCATransition)
+            if images.count != 0 {
+                imgDetail.image = images[indexFoto]
+                page.currentPage = indexFoto
+            }
+            CATransaction.commit()
         }
-        imgDetail.layer.add(transition, forKey: kCATransition)
-        if images.count != 0 {
-            imgDetail.image = images[indexFoto]
-            page.currentPage = indexFoto
-        }
-        CATransaction.commit()
     }
 }
