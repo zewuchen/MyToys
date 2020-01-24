@@ -34,6 +34,7 @@ class ToyTableViewController: UITableViewController, UITextFieldDelegate, UIText
     var faixaEtaria:String = ""
     var edit:Bool = false
     var images:[UIImage] = []
+    var filepathImagensSalvas:[String] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -71,8 +72,9 @@ class ToyTableViewController: UITableViewController, UITextFieldDelegate, UIText
                 let fotos = ima.split(separator: ";")
                 for foto in fotos {
                     self.images.append(UIImage(contentsOfFile: FileHelper.getFile(filePathWithoutExtension: String(foto))!)!)
+                    self.filepathImagensSalvas.append(String(foto))
                 }
-                reloadPageControl(acao: "Excluir")
+                reloadPageControl(acao: "Inicio")
                 btnExcluir.isHidden = false
             }
         }else{
@@ -82,6 +84,10 @@ class ToyTableViewController: UITableViewController, UITextFieldDelegate, UIText
         btnExcluir.layer.cornerRadius = 28
         btnFoto.layer.cornerRadius = 28
         
+        setSwipe()
+    }
+    
+    func setSwipe() {
         let swipeLeftGesture = UISwipeGestureRecognizer(target: self, action: #selector(swipeLeft))
         swipeLeftGesture.direction = .left
 
@@ -99,10 +105,20 @@ class ToyTableViewController: UITableViewController, UITextFieldDelegate, UIText
             page.currentPage = indexFoto
             self.images.remove(at: indexFoto)
             page.numberOfPages = self.images.count
+            
+            if images.count == 0 {
+                btnExcluir.isHidden = true
+                imgFoto.image = UIImage(named: "Picture Icon")
+            }
         } else if acao == "Adicionar", images.count != 0{
             page.numberOfPages = self.images.count
             page.currentPage = self.images.count-1
             indexFoto = self.images.count-1
+            imgFoto.image = images[indexFoto]
+        } else if acao == "Inicio" {
+            page.numberOfPages = self.images.count
+            page.currentPage = 0
+            indexFoto = 0
             imgFoto.image = images[indexFoto]
         }
     }
@@ -239,12 +255,23 @@ class ToyTableViewController: UITableViewController, UITextFieldDelegate, UIText
     }
     
     @IBAction func btnExcluir(_ sender: Any) {
-        reloadPageControl(acao: "Excluir")
-        
-        if images.count == 0 {
-            btnExcluir.isHidden = true
-            imgFoto.image = UIImage(named: "Picture Icon")
+        let alerta = UIAlertController(title: "Tem certeza que deseja excluir?", message: "A foto não poderá ser recuperada", preferredStyle: .alert)
+        let aceitar = UIAlertAction(title: "Excluir", style: .destructive){
+            UIAlertAction in
+            
+            if self.edit {
+                print(self.filepathImagensSalvas)
+            }
+            
+            self.reloadPageControl(acao: "Excluir")
         }
+        let cancelar = UIAlertAction(title: "Cancelar", style: .cancel){
+            UIAlertAction in
+        }
+
+        alerta.addAction(aceitar)
+        alerta.addAction(cancelar)
+        present(alerta, animated: true, completion: nil)
     }
     
     @IBAction func btnFoto(_ sender: Any) {

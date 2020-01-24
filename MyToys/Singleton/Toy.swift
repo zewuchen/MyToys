@@ -246,7 +246,12 @@ class Toy{
             if object.count == 1 {
                 let objectDelete = object[0] as! NSManagedObject
                 Notification.shared.delete(id: id)
-                deleteFoto(fileURL: (objectDelete as! Toys).foto)
+                if let imagens = (objectDelete as! Toys).foto {
+                    let fotos = imagens.split(separator: ";")
+                    for foto in fotos {
+                        deleteFoto(fileURL: String(foto))
+                    }
+                }
                 context?.delete(objectDelete)
                 print("Brinquedo deletado, ID: \(id)")
             }
