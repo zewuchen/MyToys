@@ -61,12 +61,12 @@ class Toy{
     *Salva a foto do brinquedo pelo FileHelper e gera um UUID para o nome da imagem*
     - Parameters:
         - imagem: UIImage que contém a imagem a ser salva
-    - Returns: Nenhum
+    - Returns: String nome da foto do brinquedo salvo
     */
-    func saveFoto(imagem:UIImage){
+    func saveFoto(imagem:UIImage) -> String{
         let fileName = UUID().uuidString
         FileHelper.saveImage(image: imagem, nameWithoutExtension: fileName)
-        self.foto = fileName
+        return fileName
     }
 
     /**

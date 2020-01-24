@@ -350,16 +350,16 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Novo Brinquedo" id="wLR-Le-Eql">
-                        <barButtonItem key="rightBarButtonItem" title="Próximo" id="mrJ-k0-9ec">
+                        <barButtonItem key="rightBarButtonItem" title="Salvar" id="mrJ-k0-9ec">
                             <connections>
-                                <action selector="btnProximoAction:" destination="Sho-NG-aW5" id="Guy-xB-oR5"/>
+                                <action selector="btnSalvar:" destination="Sho-NG-aW5" id="z0y-9t-8QG"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="btnExcluir" destination="uDT-IM-szQ" id="Sms-LD-WEW"/>
                         <outlet property="btnFoto" destination="g9N-qm-OZw" id="bwW-VH-qpV"/>
-                        <outlet property="btnProximo" destination="mrJ-k0-9ec" id="NRx-Pd-9bw"/>
+                        <outlet property="btnSalvar" destination="mrJ-k0-9ec" id="1yw-uE-BEK"/>
                         <outlet property="imgFoto" destination="IIx-4t-lgq" id="Js4-gb-UNq"/>
                         <outlet property="lblFaixaEtaria" destination="70S-PZ-ckg" id="rSp-ZM-GTk"/>
                         <outlet property="lblTamanho" destination="qsr-g9-ZL6" id="TGi-vc-tet"/>

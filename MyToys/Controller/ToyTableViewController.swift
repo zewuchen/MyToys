@@ -24,7 +24,7 @@ class ToyTableViewController: UITableViewController, UITextFieldDelegate, UIText
     @IBOutlet weak var txtViewObservacoes: UITextView!
 
     @IBOutlet weak var navigationBar: UINavigationItem!
-    @IBOutlet weak var btnProximo: UIBarButtonItem!
+    @IBOutlet weak var btnSalvar: UIBarButtonItem!
     
     var indexFoto = 0
     let animationDuration: TimeInterval = 0.25
@@ -43,7 +43,7 @@ class ToyTableViewController: UITableViewController, UITextFieldDelegate, UIText
         self.txtQuantidade.delegate =  self
         self.txtQuantidade.addTarget(self, action: #selector(txtQuantidadeDidChange(_:)), for: .editingChanged)
         self.txtViewObservacoes.delegate = self
-        btnProximo.isEnabled = false
+        btnSalvar.isEnabled = false
 
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         tap.cancelsTouchesInView = false
@@ -133,7 +133,7 @@ class ToyTableViewController: UITableViewController, UITextFieldDelegate, UIText
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if (indexPath == [1, 0] || indexPath == [1, 1]), edit == true{
-            btnProximo.isEnabled = true
+            btnSalvar.isEnabled = true
         }
     }
 
@@ -180,16 +180,6 @@ class ToyTableViewController: UITableViewController, UITextFieldDelegate, UIText
         textView.resignFirstResponder()
     }
 
-    @IBAction func btnProximoAction(_ sender: Any) {
-        Toy.shared.nome = txtNome.text
-        Toy.shared.quantidade = Int64(txtQuantidade.text!)
-        Toy.shared.observacoes = txtViewObservacoes.text
-
-        let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
-        let controller = storyboard.instantiateViewController(withIdentifier: "camera")
-        self.navigationController!.pushViewController(controller, animated: true)
-    }
-
     @IBAction func txtNomeDidChange(_ sender: Any) {
         checkInputValues()
 
@@ -206,9 +196,9 @@ class ToyTableViewController: UITableViewController, UITextFieldDelegate, UIText
     */
     func checkInputValues() {
         if txtNome.text != nil, txtNome.text != "", txtQuantidade.text != nil, txtQuantidade.text != "0", txtQuantidade.text != ""{
-            btnProximo.isEnabled = true
+            btnSalvar.isEnabled = true
         }else{
-            btnProximo.isEnabled = false
+            btnSalvar.isEnabled = false
         }
     }
 
@@ -219,9 +209,9 @@ class ToyTableViewController: UITableViewController, UITextFieldDelegate, UIText
     */
     func checkObservacoes() {
         if txtViewObservacoes.text != Toy.shared.observacoes, txtNome.text != nil, txtNome.text != "", txtQuantidade.text != nil, txtQuantidade.text != "0", txtQuantidade.text != ""{
-            btnProximo.isEnabled = true
+            btnSalvar.isEnabled = true
         }else{
-            btnProximo.isEnabled = false
+            btnSalvar.isEnabled = false
         }
     }
     
@@ -244,5 +234,32 @@ class ToyTableViewController: UITableViewController, UITextFieldDelegate, UIText
         }
     }
     
-
+    @IBAction func btnSalvar(_ sender: Any) {
+        
+        Toy.shared.nome = txtNome.text
+        Toy.shared.quantidade = Int64(txtQuantidade.text!)
+        Toy.shared.observacoes = txtViewObservacoes.text
+        
+        var filenameFotos:String = ""
+        
+        for foto in images {
+            filenameFotos += ";"
+            let nome = Toy.shared.saveFoto(imagem: foto)
+            filenameFotos += nome
+        }
+        Toy.shared.foto = filenameFotos
+        Toy.shared.save()
+        
+//        if Toy.shared.edit == true, let id = Toy.shared.id{
+//            if delete == true{
+//                Toy.shared.saveFoto(imagem: foto!)
+//            }
+//            Toy.shared.update(id: id)
+//        }else{
+//            Toy.shared.saveFoto(imagem: foto!)
+//            Toy.shared.save()
+//        }
+        self.navigationController?.popToRootViewController(animated: true)
+    }
+    
 }
