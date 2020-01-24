@@ -10,6 +10,10 @@ import UIKit
 
 class ToyTableViewController: UITableViewController, UITextFieldDelegate, UITextViewDelegate{
 
+    @IBOutlet weak var btnExcluir: UIButton!
+    @IBOutlet weak var btnFoto: UIButton!
+    @IBOutlet weak var page: UIPageControl!
+    @IBOutlet weak var imgFoto: UIImageView!
     let limiteNome = 30
     let limiteQuantidade = 5
 
@@ -21,10 +25,16 @@ class ToyTableViewController: UITableViewController, UITextFieldDelegate, UIText
 
     @IBOutlet weak var navigationBar: UINavigationItem!
     @IBOutlet weak var btnProximo: UIBarButtonItem!
-
+    
+    var indexFoto = 0
+    let animationDuration: TimeInterval = 0.25
+    let switchingInterval: TimeInterval = 3
+    var transition = CATransition()
+    
     var tamanho:String = ""
     var faixaEtaria:String = ""
     var edit:Bool = false
+    var images:[UIImage] = [(UIImage(named: "Teste") ?? UIImage()), (UIImage(named: "Picture Icon") ?? UIImage())]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,7 +48,14 @@ class ToyTableViewController: UITableViewController, UITextFieldDelegate, UIText
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         tap.cancelsTouchesInView = false
         self.view.addGestureRecognizer(tap)
-
+        
+        imgFoto.image = images[indexFoto]
+        page.numberOfPages = images.count
+        page.currentPage = indexFoto
+        page.currentPageIndicatorTintColor = #colorLiteral(red: 0.01568627451, green: 0.03137254902, blue: 0.05882352941, alpha: 1)
+        page.backgroundColor = .white
+        view.bringSubviewToFront(imgFoto)
+        view.bringSubviewToFront(page)
 
         //Editando brinquedo
         if edit == true{
@@ -55,6 +72,46 @@ class ToyTableViewController: UITableViewController, UITextFieldDelegate, UIText
         }else{
             Toy.shared.clear()
         }
+        
+        btnExcluir.layer.cornerRadius = 28
+        btnFoto.layer.cornerRadius = 28
+        
+        let swipeLeftGesture = UISwipeGestureRecognizer(target: self, action: #selector(swipeLeft))
+        swipeLeftGesture.direction = .left
+
+        let swipeRightGesture = UISwipeGestureRecognizer(target: self, action: #selector(swipeRight))
+        swipeRightGesture.direction = .right
+        
+        self.imgFoto.addGestureRecognizer(swipeLeftGesture)
+        self.imgFoto.addGestureRecognizer(swipeRightGesture)
+    }
+    
+    @objc func swipeLeft() {
+        animateImageView(direcao: "Esquerdo")
+    }
+
+    @objc func swipeRight() {
+        animateImageView(direcao: "Direito")
+    }
+    
+    func animateImageView(direcao: String) {
+        CATransaction.begin()
+
+        CATransaction.setAnimationDuration(animationDuration)
+
+        transition.type = CATransitionType.push
+        if direcao == "Direito" {
+            transition.subtype = CATransitionSubtype.fromLeft
+        } else {
+            transition.subtype = CATransitionSubtype.fromRight
+        }
+        indexFoto = indexFoto < images.count - 1 ? indexFoto + 1 : 0
+        imgFoto.layer.add(transition, forKey: kCATransition)
+        if images.count != 0 {
+            imgFoto.image = images[indexFoto]
+            page.currentPage = indexFoto
+        }
+        CATransaction.commit()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -160,5 +217,25 @@ class ToyTableViewController: UITableViewController, UITextFieldDelegate, UIText
             btnProximo.isEnabled = false
         }
     }
+    
+    @IBAction func btnExcluir(_ sender: Any) {
+        self.images.remove(at: indexFoto)
+        indexFoto = indexFoto < images.count - 1 ? indexFoto + 1 : 0
+        imgFoto.image = images[indexFoto]
+        page.currentPage = indexFoto
+        page.numberOfPages = self.images.count
+    }
+    
+    @IBAction func btnFoto(_ sender: Any) {
+        Camera().selecionadorImagem(self){ imagem in
+            self.imgFoto.image = imagem
+            self.images.append(imagem)
+            
+            self.page.numberOfPages = self.images.count
+            self.page.currentPage = self.images.count-1
+            self.indexFoto = self.images.count-1
+        }
+    }
+    
 
 }
