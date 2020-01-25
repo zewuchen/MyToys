@@ -25,7 +25,7 @@ class ToyTableViewController: UITableViewController, UITextFieldDelegate, UIText
     @IBOutlet weak var navigationBar: UINavigationItem!
     @IBOutlet weak var btnSalvar: UIBarButtonItem!
     
-    var indexFoto = 1
+    var indexFoto = 0
     let animationDuration: TimeInterval = 0.25
     let switchingInterval: TimeInterval = 3
     var transition = CATransition()
@@ -35,6 +35,7 @@ class ToyTableViewController: UITableViewController, UITextFieldDelegate, UIText
     var edit:Bool = false
     var images:[UIImage] = []
     var filepathImagensSalvas:[String] = []
+    var novasImagens:[UIImage] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,18 +44,14 @@ class ToyTableViewController: UITableViewController, UITextFieldDelegate, UIText
         self.txtQuantidade.delegate =  self
         self.txtQuantidade.addTarget(self, action: #selector(txtQuantidadeDidChange(_:)), for: .editingChanged)
         self.txtViewObservacoes.delegate = self
-        btnSalvar.isEnabled = false
 
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         tap.cancelsTouchesInView = false
         self.view.addGestureRecognizer(tap)
         
-        reloadPageControl(acao: "Adicionar")
-        btnExcluir.isHidden = true
-        page.currentPageIndicatorTintColor = #colorLiteral(red: 0.01568627451, green: 0.03137254902, blue: 0.05882352941, alpha: 1)
-        view.bringSubviewToFront(imgFoto)
-        view.bringSubviewToFront(page)
-
+        layout()
+        setSwipe()
+        
         //Editando brinquedo
         if edit == true{
             txtNome.text = Toy.shared.nome
@@ -74,19 +71,32 @@ class ToyTableViewController: UITableViewController, UITextFieldDelegate, UIText
                     self.images.append(UIImage(contentsOfFile: FileHelper.getFile(filePathWithoutExtension: String(foto))!)!)
                     self.filepathImagensSalvas.append(String(foto))
                 }
-                reloadPageControl(acao: "Inicio")
+                reloadPageControl(acao: "Editando")
                 btnExcluir.isHidden = false
             }
-        }else{
+        } else {
             Toy.shared.clear()
         }
-        
-        btnExcluir.layer.cornerRadius = 28
-        btnFoto.layer.cornerRadius = 28
-        
-        setSwipe()
     }
     
+    /**
+    *Configurações de layout  e cores*
+    - Parameters: Nenhum
+    - Returns: Nenhum
+    */
+    func layout() {
+        btnExcluir.isHidden = true
+        btnExcluir.layer.cornerRadius = 28
+        btnFoto.layer.cornerRadius = 28
+        page.currentPageIndicatorTintColor = #colorLiteral(red: 0.01568627451, green: 0.03137254902, blue: 0.05882352941, alpha: 1)
+        view.bringSubviewToFront(page)
+    }
+    
+    /**
+    *Adiciona o swipe na UIImage*
+    - Parameters: Nenhum
+    - Returns: Nenhum
+    */
     func setSwipe() {
         let swipeLeftGesture = UISwipeGestureRecognizer(target: self, action: #selector(swipeLeft))
         swipeLeftGesture.direction = .left
@@ -98,28 +108,37 @@ class ToyTableViewController: UITableViewController, UITextFieldDelegate, UIText
         self.imgFoto.addGestureRecognizer(swipeRightGesture)
     }
     
+    /**
+    *Atualiza a page control e a imagem apresentada*
+    - Parameters:
+        - acao: atualizar de acordo com um ação específicada
+    - Returns: Nenhum
+    */
     func reloadPageControl(acao: String) {
         if acao == "Excluir", images.count != 0 {
             indexFoto = indexFoto - 1 > -1 ? indexFoto - 1 : 0
-            imgFoto.image = images[indexFoto]
             page.currentPage = indexFoto
             self.images.remove(at: indexFoto)
-            page.numberOfPages = self.images.count
-            
-            if images.count == 0 {
-                btnExcluir.isHidden = true
-                imgFoto.image = UIImage(named: "Picture Icon")
+            if images.count > -1 {
+                imgFoto.image = images[indexFoto]
             }
-        } else if acao == "Adicionar", images.count != 0{
+            page.numberOfPages = self.images.count
+        } else if acao == "Adicionar"{
             page.numberOfPages = self.images.count
             page.currentPage = self.images.count-1
             indexFoto = self.images.count-1
             imgFoto.image = images[indexFoto]
-        } else if acao == "Inicio" {
+        } else if acao == "Editando" {
             page.numberOfPages = self.images.count
             page.currentPage = 0
             indexFoto = 0
             imgFoto.image = images[indexFoto]
+        }
+        
+        
+        if images.count == 0 {
+            btnExcluir.isHidden = true
+            imgFoto.image = UIImage(named: "Picture Icon")
         }
     }
     
@@ -146,7 +165,7 @@ class ToyTableViewController: UITableViewController, UITextFieldDelegate, UIText
             transition.type = CATransitionType.push
             if direcao == "Direito" {
                 transition.subtype = CATransitionSubtype.fromLeft
-                indexFoto = indexFoto > 0 ? indexFoto - 1 : images.count - 1
+                indexFoto = indexFoto - 1 > -1 ? indexFoto - 1 : images.count - 1
             } else {
                 transition.subtype = CATransitionSubtype.fromRight
                 indexFoto = indexFoto < images.count - 1 ? indexFoto + 1 : 0
@@ -175,8 +194,20 @@ class ToyTableViewController: UITableViewController, UITextFieldDelegate, UIText
             btnSalvar.isEnabled = true
         }
     }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = super.tableView(tableView, cellForRowAt: indexPath)
+        
+        switch (indexPath.section, indexPath.row) {
+            case (1, 0):
+                print("Code")
 
+            default: break
+        }
 
+        return cell
+    }
+    
     @objc func dismissKeyboard() {
         self.view.endEditing(true)
     }
@@ -260,7 +291,21 @@ class ToyTableViewController: UITableViewController, UITextFieldDelegate, UIText
             UIAlertAction in
             
             if self.edit {
-                print(self.filepathImagensSalvas)
+                var jaRemovido = true
+                
+                for i in 0 ... self.novasImagens.count - 1 {
+                    if self.images[self.indexFoto] == self.novasImagens[i] {
+                        self.novasImagens.remove(at: i)
+                        jaRemovido = false
+                        print("removido recem adicionada")
+                    }
+                }
+                
+                if jaRemovido {
+                    Toy.shared.deleteFoto(fileURL: self.filepathImagensSalvas[self.indexFoto])
+                    self.filepathImagensSalvas.remove(at: self.indexFoto)
+                }
+                
             }
             
             self.reloadPageControl(acao: "Excluir")
@@ -279,6 +324,9 @@ class ToyTableViewController: UITableViewController, UITextFieldDelegate, UIText
             self.images.append(imagem)
             self.reloadPageControl(acao: "Adicionar")
             self.btnExcluir.isHidden = false
+            if self.edit {
+                self.novasImagens.append(imagem)
+            }
         }
     }
     
@@ -287,11 +335,21 @@ class ToyTableViewController: UITableViewController, UITextFieldDelegate, UIText
         Toy.shared.quantidade = Int64(txtQuantidade.text!)
         Toy.shared.observacoes = txtViewObservacoes.text
         
+        var filenameFotos:String = ""
+        
         if edit, let id = Toy.shared.id {
+            for foto in novasImagens {
+                filenameFotos += ";"
+                let nome = Toy.shared.saveFoto(imagem: foto)
+                filenameFotos += nome
+            }
+            for antigaFoto in filepathImagensSalvas {
+                filenameFotos += ";"
+                filenameFotos += antigaFoto
+            }
+            Toy.shared.foto = filenameFotos
             Toy.shared.update(id: id)
         } else {
-            var filenameFotos:String = ""
-            
             for foto in images {
                 filenameFotos += ";"
                 let nome = Toy.shared.saveFoto(imagem: foto)
