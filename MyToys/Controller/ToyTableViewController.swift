@@ -119,7 +119,7 @@ class ToyTableViewController: UITableViewController, UITextFieldDelegate, UIText
             indexFoto = indexFoto - 1 > -1 ? indexFoto - 1 : 0
             page.currentPage = indexFoto
             self.images.remove(at: indexFoto)
-            if images.count > -1 {
+            if images.count > 0 {
                 imgFoto.image = images[indexFoto]
             }
             page.numberOfPages = self.images.count
