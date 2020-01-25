@@ -16,7 +16,13 @@ class DetailsViewController: UIViewController{
     @IBOutlet weak var lblTamanho: UILabel!
     @IBOutlet weak var lblFaixaEtaria: UILabel!
     @IBOutlet weak var txtObservacoes: UITextView!
+    @IBOutlet weak var page: UIPageControl!
     
+    var indexFoto = 0
+    let animationDuration: TimeInterval = 0.25
+    let switchingInterval: TimeInterval = 3
+    var transition = CATransition()
+    var images:[UIImage] = []
     //ViewCards
     @IBOutlet weak var view1: UIView! {
         didSet {
@@ -51,8 +57,25 @@ class DetailsViewController: UIViewController{
         self.navigationController?.view.tintColor = #colorLiteral(red: 0.4748159051, green: 0.75166291, blue: 0.9633973241, alpha: 1)
         
         if let ima = Toy.shared.foto{
-            self.imgDetail.image = UIImage(contentsOfFile: FileHelper.getFile(filePathWithoutExtension: ima)!)
+            let fotos = ima.split(separator: ";")
+            for foto in fotos {
+                self.images.append(UIImage(contentsOfFile: FileHelper.getFile(filePathWithoutExtension: String(foto))!)!)
+            }
+            self.indexFoto = 0
+            self.page.currentPage = 0
+            self.page.numberOfPages = images.count
+            self.imgDetail.image =  images[indexFoto]
+            page.currentPageIndicatorTintColor = #colorLiteral(red: 0.01568627451, green: 0.03137254902, blue: 0.05882352941, alpha: 1)
         }
+        
+        let swipeLeftGesture = UISwipeGestureRecognizer(target: self, action: #selector(swipeLeft))
+        swipeLeftGesture.direction = .left
+
+        let swipeRightGesture = UISwipeGestureRecognizer(target: self, action: #selector(swipeRight))
+        swipeRightGesture.direction = .right
+        
+        self.imgDetail.addGestureRecognizer(swipeLeftGesture)
+        self.imgDetail.addGestureRecognizer(swipeRightGesture)
         
         guard let id = Toy.shared.id else {return}
         guard let nome = Toy.shared.nome else {return}
@@ -92,6 +115,43 @@ class DetailsViewController: UIViewController{
             if let nextVC = segue.destination as? ToyTableViewController {
                 nextVC.edit = true
             }
+        }
+    }
+    
+    @objc func swipeLeft() {
+        animateImageView(direcao: "Esquerdo")
+    }
+
+    @objc func swipeRight() {
+        animateImageView(direcao: "Direito")
+    }
+    
+    /**
+    *Converte o formato da data*
+    - Parameters:
+        - direcao: string informando a direcao do swipe na UIImage
+    - Returns: Nenhum
+    */
+    func animateImageView(direcao: String) {
+        if images.count > 1 {
+            CATransaction.begin()
+
+            CATransaction.setAnimationDuration(animationDuration)
+
+            transition.type = CATransitionType.push
+            if direcao == "Direito" {
+                transition.subtype = CATransitionSubtype.fromLeft
+                indexFoto = indexFoto > 0 ? indexFoto - 1 : images.count - 1
+            } else {
+                transition.subtype = CATransitionSubtype.fromRight
+                indexFoto = indexFoto < images.count - 1 ? indexFoto + 1 : 0
+            }
+            imgDetail.layer.add(transition, forKey: kCATransition)
+            if images.count != 0 {
+                imgDetail.image = images[indexFoto]
+                page.currentPage = indexFoto
+            }
+            CATransaction.commit()
         }
     }
 }

@@ -43,15 +43,15 @@ class CameraViewController: UIViewController {
     
     @IBAction func btnSalvar(_ sender: Any) {
 //        self.navigationController?.popViewController(animated: true) Dá pop em apenas uma tela
-        if Toy.shared.edit == true, let id = Toy.shared.id{
-            if delete == true{
-                Toy.shared.saveFoto(imagem: foto!)
-            }
-            Toy.shared.update(id: id)
-        }else{
-            Toy.shared.saveFoto(imagem: foto!)
-            Toy.shared.save()
-        }
+//        if Toy.shared.edit == true, let id = Toy.shared.id{
+//            if delete == true{
+//                Toy.shared.saveFoto(imagem: foto!)
+//            }
+//            Toy.shared.update(id: id)
+//        }else{
+//            Toy.shared.saveFoto(imagem: foto!)
+//            Toy.shared.save()
+//        }
         self.navigationController?.popToRootViewController(animated: true) //Dá pop até o RootViewController
     }
 

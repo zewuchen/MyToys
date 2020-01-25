@@ -61,12 +61,12 @@ class Toy{
     *Salva a foto do brinquedo pelo FileHelper e gera um UUID para o nome da imagem*
     - Parameters:
         - imagem: UIImage que contém a imagem a ser salva
-    - Returns: Nenhum
+    - Returns: String nome da foto do brinquedo salvo
     */
-    func saveFoto(imagem:UIImage){
+    func saveFoto(imagem:UIImage) -> String{
         let fileName = UUID().uuidString
         FileHelper.saveImage(image: imagem, nameWithoutExtension: fileName)
-        self.foto = fileName
+        return fileName
     }
 
     /**
@@ -246,7 +246,12 @@ class Toy{
             if object.count == 1 {
                 let objectDelete = object[0] as! NSManagedObject
                 Notification.shared.delete(id: id)
-                deleteFoto(fileURL: (objectDelete as! Toys).foto)
+                if let imagens = (objectDelete as! Toys).foto {
+                    let fotos = imagens.split(separator: ";")
+                    for foto in fotos {
+                        deleteFoto(fileURL: String(foto))
+                    }
+                }
                 context?.delete(objectDelete)
                 print("Brinquedo deletado, ID: \(id)")
             }

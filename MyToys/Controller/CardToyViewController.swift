@@ -115,7 +115,8 @@ extension CardToyViewController: UICollectionViewDataSource {
 
         cell.date.text = stringFromDate(brinquedos[indexPath.row].dateAdd! as Date)
         if let foto =  brinquedos[indexPath.row].foto{
-            cell.image.image = UIImage(contentsOfFile: FileHelper.getFile(filePathWithoutExtension: foto)!)
+            let filenameFoto = foto.split(separator: ";").first!
+            cell.image.image = UIImage(contentsOfFile: FileHelper.getFile(filePathWithoutExtension: String(filenameFoto))!)
         }
         
         cell.bringSubviewToFront(cell.checkmarkLabel)
