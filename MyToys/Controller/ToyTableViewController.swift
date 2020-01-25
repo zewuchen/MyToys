@@ -199,10 +199,24 @@ class ToyTableViewController: UITableViewController, UITextFieldDelegate, UIText
         let cell = super.tableView(tableView, cellForRowAt: indexPath)
         
         switch (indexPath.section, indexPath.row) {
-            case (1, 0):
-                print("Code")
+            case (0, 0):
+                break
+            
+            case (1, 1):
+                break
+            
+            case (2, 1):
+                break
+            
+            case (3, 0):
+                break
 
-            default: break
+            default:
+                let bottomBorder = CALayer()
+
+                bottomBorder.frame = CGRect(x: 15.0, y: 49.5, width: cell.bounds.width, height: 0.5)
+                bottomBorder.backgroundColor = UIColor(white: 0.8, alpha: 1.0).cgColor
+                cell.contentView.layer.addSublayer(bottomBorder)
         }
 
         return cell
