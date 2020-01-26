@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import PDFKit
 
 class DetailsViewController: UIViewController{
 
@@ -79,9 +80,7 @@ class DetailsViewController: UIViewController{
         
         self.lblTamanho.text = "Tamanho: \(String(Toy.shared.tamanho!))"
         
-        let faixaEtaria = Toy.shared.faixaEtaria
-        guard let result = faixaEtaria?.split(separator: " ") else {return}
-        self.lblFaixaEtaria.text = "Faixa Etária: \(result[0]) \(result[1])"
+        self.lblFaixaEtaria.text = "Faixa Etária: \(String(Toy.shared.faixaEtaria!))"
         
         if Toy.shared.observacoes == ""{
             self.txtObservacoes.text = "Não há observações."
@@ -142,6 +141,61 @@ class DetailsViewController: UIViewController{
             CATransaction.commit()
         }
     }
+    
+    func createPDF() {
+
+        let pdfMetaData = [
+            kCGPDFContextCreator: "Brinquedos",
+            kCGPDFContextAuthor: "MyToysApp"
+        ]
+        let format = UIGraphicsPDFRendererFormat()
+        format.documentInfo = pdfMetaData as [String: Any]
+
+        let pageRect = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height)
+        
+        let renderer = UIGraphicsPDFRenderer(bounds: pageRect, format: format)
+        
+        let data = renderer.pdfData { (context) in
+            
+            context.beginPage()
+            
+            let titleAttributes = [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 20)]
+            let textAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 20)]
+            
+            let imagem = images[0]
+            let imagemRect = CGRect(x: 0, y: 0, width: view.frame.width, height: imgDetail.frame.height)
+            imagem.draw(in: imagemRect)
+            
+            let title = "\(String(Toy.shared.nome!))"
+            title.draw(at: CGPoint(x: 15, y: imgDetail.frame.height + 20), withAttributes: titleAttributes)
+            
+            let quantidade = "Quantidade: \(String(Toy.shared.quantidade!)) unidades"
+            quantidade.draw(at: CGPoint(x: 15, y: imgDetail.frame.height + 55), withAttributes: textAttributes)
+            
+            let tamanho = "Tamanho: \(String(Toy.shared.tamanho!))"
+            tamanho.draw(at: CGPoint(x: 15, y: imgDetail.frame.height + 80), withAttributes: textAttributes)
+            
+            let faixa = "Faixa Etária: \(String(Toy.shared.faixaEtaria!))"
+            faixa.draw(at: CGPoint(x: 15, y: imgDetail.frame.height + 105), withAttributes: textAttributes)
+            
+            if Toy.shared.observacoes != nil {
+                let observacoes = "Observações: \n \(String(Toy.shared.observacoes!))"
+                observacoes.draw(at: CGPoint(x: 15, y: imgDetail.frame.height + 130), withAttributes: textAttributes)
+            } else {
+                let observacoes = "Não há observações"
+                observacoes.draw(at: CGPoint(x: 15, y: imgDetail.frame.height + 130), withAttributes: textAttributes)
+            }
+            
+        }
+        
+        let vc = UIActivityViewController(activityItems: [data],applicationActivities:[])
+        present(vc, animated: true, completion: nil)
+    }
+    
+    @IBAction func btnCompartilhar(_ sender: Any) {
+        createPDF()
+    }
+    
 }
 
 extension UIView {

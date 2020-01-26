@@ -30,7 +30,7 @@ class Toy{
         self.brinquedos = []
         self.tamanhos = ["Pequeno", "Medio", "Grande"]
         self.tamanho = self.tamanhos[0]
-        self.faixas = ["-6 meses", "+1 ano", "+3 anos", "+6 anos", "+9 anos", "+12 anos"]
+        self.faixas = ["Menor de 6 meses", "Maior de 1 ano", "Maior de 3 anos", "Maior de 6 anos", "Maior de 9 anos", "Maior de 12 anos"]
         self.faixaEtaria = self.faixas[0]
         self.id = UUID().uuidString
         self.dateAdd = Date() as NSDate
