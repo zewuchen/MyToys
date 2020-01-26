@@ -352,6 +352,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Novo Brinquedo" id="wLR-Le-Eql">
                         <barButtonItem key="rightBarButtonItem" title="Salvar" id="mrJ-k0-9ec">
+                            <color key="tintColor" red="0.31372549020000001" green="0.49019607840000001" blue="0.73725490199999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <action selector="btnSalvar:" destination="Sho-NG-aW5" id="z0y-9t-8QG"/>
                             </connections>
@@ -485,6 +486,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="NqK-7G-Xv5">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="0.31372549019607843" green="0.49019607843137253" blue="0.73725490196078436" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <connections>
                         <segue destination="IyU-5c-MAK" kind="relationship" relationship="rootViewController" id="J8a-Rf-1xm"/>
@@ -591,11 +593,13 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="MyToys" largeTitleDisplayMode="never" id="AHZ-xo-9aZ">
                         <barButtonItem key="leftBarButtonItem" title="Excluir" id="YPR-Nm-jvr">
+                            <color key="tintColor" red="0.31372549019607843" green="0.49019607843137253" blue="0.73725490196078436" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             <connections>
                                 <action selector="btnExcluir:" destination="IyU-5c-MAK" id="mnA-bW-fSU"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="IRa-6p-Ie0">
+                            <color key="tintColor" red="0.31372549020000001" green="0.49019607840000001" blue="0.73725490199999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <segue destination="Sho-NG-aW5" kind="show" id="OkL-uh-4Z3"/>
                             </connections>
@@ -628,7 +632,7 @@
                                                 <rect key="frame" x="0.0" y="-90" width="414" height="404"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </imageView>
-                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Carrinho Hot Wheels" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vtl-3K-mYK">
+                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Carrinho Hot Wheels" textAlignment="center" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vtl-3K-mYK">
                                                 <rect key="frame" x="40" y="296" width="334" height="32.5"/>
                                                 <color key="backgroundColor" red="0.31764705879999999" green="0.48627450979999998" blue="0.73725490199999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
@@ -712,7 +716,8 @@
                         <viewLayoutGuide key="safeArea" id="SDQ-Xi-lOk"/>
                     </view>
                     <navigationItem key="navigationItem" id="YSD-yC-ejT">
-                        <barButtonItem key="rightBarButtonItem" systemItem="compose" id="n5N-Qu-QkZ">
+                        <barButtonItem key="rightBarButtonItem" image="pencil" catalog="system" id="n5N-Qu-QkZ">
+                            <color key="tintColor" red="0.31372549020000001" green="0.49019607840000001" blue="0.73725490199999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <segue destination="Sho-NG-aW5" kind="show" identifier="editSegue" id="jQ1-ag-egi"/>
                             </connections>
@@ -786,6 +791,7 @@
         <image name="Câmera Icon" width="1024" height="1024"/>
         <image name="Picture Icon" width="1204" height="1024"/>
         <image name="camera" catalog="system" width="64" height="48"/>
+        <image name="pencil" catalog="system" width="64" height="56"/>
         <image name="trash" catalog="system" width="60" height="64"/>
     </resources>
     <inferredMetricsTieBreakers>

@@ -30,7 +30,8 @@ class DetailsViewController: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+        imgDetail.addBlackGradientLayerInForeground(frame: CGRect(x: 0, y: 0, width: imgDetail.frame.width, height: 200), colors: [UIColor.white, UIColor.init(white: 1, alpha: 0.5), UIColor.clear])
+        page.isHidden = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -38,18 +39,21 @@ class DetailsViewController: UIViewController{
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.isTranslucent = true
         self.navigationController?.view.backgroundColor = .clear
-        self.navigationController?.view.tintColor = #colorLiteral(red: 0.4748159051, green: 0.75166291, blue: 0.9633973241, alpha: 1)
+        self.navigationController?.view.tintColor = #colorLiteral(red: 0.3137254902, green: 0.4901960784, blue: 0.737254902, alpha: 1)
         
         if let ima = Toy.shared.foto{
             let fotos = ima.split(separator: ";")
             for foto in fotos {
                 self.images.append(UIImage(contentsOfFile: FileHelper.getFile(filePathWithoutExtension: String(foto))!)!)
             }
-            self.indexFoto = 0
-            self.page.currentPage = 0
-            self.page.numberOfPages = images.count
-            self.imgDetail.image =  images[indexFoto]
-            page.currentPageIndicatorTintColor = #colorLiteral(red: 0.01568627451, green: 0.03137254902, blue: 0.05882352941, alpha: 1)
+            if images.count > 1 {
+                self.indexFoto = 0
+                self.page.currentPage = 0
+                self.page.numberOfPages = images.count
+                page.currentPageIndicatorTintColor = #colorLiteral(red: 0.01568627451, green: 0.03137254902, blue: 0.05882352941, alpha: 1)
+                page.isHidden = false
+            }
+            self.imgDetail.image =  images[0]
         }
         
         let swipeLeftGesture = UISwipeGestureRecognizer(target: self, action: #selector(swipeLeft))
@@ -137,5 +141,23 @@ class DetailsViewController: UIViewController{
             }
             CATransaction.commit()
         }
+    }
+}
+
+extension UIView {
+    // For insert layer in Foreground
+    func addBlackGradientLayerInForeground(frame: CGRect, colors:[UIColor]){
+        let gradient = CAGradientLayer()
+        gradient.frame = frame
+        gradient.colors = colors.map{$0.cgColor}
+        self.layer.addSublayer(gradient)
+    }
+    
+    // For insert layer in background
+    func addBlackGradientLayerInBackground(frame: CGRect, colors:[UIColor]){
+        let gradient = CAGradientLayer()
+        gradient.frame = frame
+        gradient.colors = colors.map{$0.cgColor}
+        self.layer.insertSublayer(gradient, at: 0)
     }
 }
