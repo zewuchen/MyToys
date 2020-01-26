@@ -80,9 +80,7 @@ class DetailsViewController: UIViewController{
         
         self.lblTamanho.text = "Tamanho: \(String(Toy.shared.tamanho!))"
         
-        let faixaEtaria = Toy.shared.faixaEtaria
-        guard let result = faixaEtaria?.split(separator: " ") else {return}
-        self.lblFaixaEtaria.text = "Faixa Etária: \(result[0]) \(result[1])"
+        self.lblFaixaEtaria.text = "Faixa Etária: \(String(Toy.shared.faixaEtaria!))"
         
         if Toy.shared.observacoes == ""{
             self.txtObservacoes.text = "Não há observações."

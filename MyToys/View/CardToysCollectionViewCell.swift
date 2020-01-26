@@ -36,7 +36,7 @@ class CardToysCollectionViewCell: UICollectionViewCell {
         didSet {
             if isInEditingMode {
                 checkmarkLabel.text = isSelected ? "✓" : ""
-                checkmarkLabel.backgroundColor = isSelected ? #colorLiteral(red: 0.1215686277, green: 0.01176470611, blue: 0.4235294163, alpha: 1) : UIColor.clear
+                checkmarkLabel.backgroundColor = isSelected ? #colorLiteral(red: 0.968627451, green: 0.9764705882, blue: 0.9882352941, alpha: 1) : UIColor.clear
             }
         }
     }
