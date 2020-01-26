@@ -716,12 +716,20 @@
                         <viewLayoutGuide key="safeArea" id="SDQ-Xi-lOk"/>
                     </view>
                     <navigationItem key="navigationItem" id="YSD-yC-ejT">
-                        <barButtonItem key="rightBarButtonItem" image="pencil" catalog="system" id="n5N-Qu-QkZ">
-                            <color key="tintColor" red="0.31372549020000001" green="0.49019607840000001" blue="0.73725490199999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <connections>
-                                <segue destination="Sho-NG-aW5" kind="show" identifier="editSegue" id="jQ1-ag-egi"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem image="pencil" catalog="system" id="n5N-Qu-QkZ">
+                                <color key="tintColor" red="0.31372549020000001" green="0.49019607840000001" blue="0.73725490199999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <segue destination="Sho-NG-aW5" kind="show" identifier="editSegue" id="jQ1-ag-egi"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem systemItem="action" id="Dt1-No-q65">
+                                <color key="tintColor" red="0.31372549020000001" green="0.49019607840000001" blue="0.73725490199999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <action selector="btnCompartilhar:" destination="dg7-ma-HA9" id="zSx-Zl-XOC"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="imgDetail" destination="Dy7-5J-G9O" id="KxZ-i3-rvr"/>
