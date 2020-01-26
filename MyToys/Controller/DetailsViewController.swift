@@ -11,7 +11,11 @@ import UIKit
 class DetailsViewController: UIViewController{
 
     @IBOutlet weak var imgDetail: UIImageView!
-    @IBOutlet weak var lblNome: UILabel!
+    @IBOutlet weak var lblNome: UILabel! {
+        didSet {
+            lblNome.layer.cornerRadius = 10
+        }
+    }
     @IBOutlet weak var lblQuantidade: UILabel!
     @IBOutlet weak var lblTamanho: UILabel!
     @IBOutlet weak var lblFaixaEtaria: UILabel!
@@ -23,26 +27,6 @@ class DetailsViewController: UIViewController{
     let switchingInterval: TimeInterval = 3
     var transition = CATransition()
     var images:[UIImage] = []
-    //ViewCards
-    @IBOutlet weak var view1: UIView! {
-        didSet {
-            view1.layer.cornerRadius = 13
-            view1.layer.borderWidth = 1
-        }
-    }
-    @IBOutlet weak var view2: UIView! {
-        didSet {
-            view2.layer.cornerRadius = 13
-            view2.layer.borderWidth = 1
-        }
-    }
-    @IBOutlet weak var view3: UIView! {
-        didSet {
-            view3.layer.cornerRadius = 13
-            view3.layer.borderWidth = 1
-
-        }
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
