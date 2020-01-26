@@ -11,7 +11,11 @@ import UIKit
 class DetailsViewController: UIViewController{
 
     @IBOutlet weak var imgDetail: UIImageView!
-    @IBOutlet weak var lblNome: UILabel!
+    @IBOutlet weak var lblNome: UILabel! {
+        didSet {
+            lblNome.layer.cornerRadius = 10
+        }
+    }
     @IBOutlet weak var lblQuantidade: UILabel!
     @IBOutlet weak var lblTamanho: UILabel!
     @IBOutlet weak var lblFaixaEtaria: UILabel!
@@ -23,30 +27,11 @@ class DetailsViewController: UIViewController{
     let switchingInterval: TimeInterval = 3
     var transition = CATransition()
     var images:[UIImage] = []
-    //ViewCards
-    @IBOutlet weak var view1: UIView! {
-        didSet {
-            view1.layer.cornerRadius = 13
-            view1.layer.borderWidth = 1
-        }
-    }
-    @IBOutlet weak var view2: UIView! {
-        didSet {
-            view2.layer.cornerRadius = 13
-            view2.layer.borderWidth = 1
-        }
-    }
-    @IBOutlet weak var view3: UIView! {
-        didSet {
-            view3.layer.cornerRadius = 13
-            view3.layer.borderWidth = 1
-
-        }
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+        imgDetail.addBlackGradientLayerInForeground(frame: CGRect(x: 0, y: 0, width: imgDetail.frame.width, height: 200), colors: [UIColor.white, UIColor.init(white: 1, alpha: 0.5), UIColor.clear])
+        page.isHidden = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -54,18 +39,21 @@ class DetailsViewController: UIViewController{
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.isTranslucent = true
         self.navigationController?.view.backgroundColor = .clear
-        self.navigationController?.view.tintColor = #colorLiteral(red: 0.4748159051, green: 0.75166291, blue: 0.9633973241, alpha: 1)
+        self.navigationController?.view.tintColor = #colorLiteral(red: 0.3137254902, green: 0.4901960784, blue: 0.737254902, alpha: 1)
         
         if let ima = Toy.shared.foto{
             let fotos = ima.split(separator: ";")
             for foto in fotos {
                 self.images.append(UIImage(contentsOfFile: FileHelper.getFile(filePathWithoutExtension: String(foto))!)!)
             }
-            self.indexFoto = 0
-            self.page.currentPage = 0
-            self.page.numberOfPages = images.count
-            self.imgDetail.image =  images[indexFoto]
-            page.currentPageIndicatorTintColor = #colorLiteral(red: 0.01568627451, green: 0.03137254902, blue: 0.05882352941, alpha: 1)
+            if images.count > 1 {
+                self.indexFoto = 0
+                self.page.currentPage = 0
+                self.page.numberOfPages = images.count
+                page.currentPageIndicatorTintColor = #colorLiteral(red: 0.01568627451, green: 0.03137254902, blue: 0.05882352941, alpha: 1)
+                page.isHidden = false
+            }
+            self.imgDetail.image =  images[0]
         }
         
         let swipeLeftGesture = UISwipeGestureRecognizer(target: self, action: #selector(swipeLeft))
@@ -84,16 +72,16 @@ class DetailsViewController: UIViewController{
         
         self.lblNome.text = Toy.shared.nome
         if Int(quantidade)! > 1{
-            self.lblQuantidade.text = "\(quantidade) \n unidades"
+            self.lblQuantidade.text = "Quantidade: \(quantidade) unidades"
         }else{
-            self.lblQuantidade.text = "\(quantidade) \n unidade"
+            self.lblQuantidade.text = "Quantidade: \(quantidade) unidade"
         }
         
-        self.lblTamanho.text = Toy.shared.tamanho
+        self.lblTamanho.text = "Tamanho: \(String(Toy.shared.tamanho!))"
         
         let faixaEtaria = Toy.shared.faixaEtaria
         guard let result = faixaEtaria?.split(separator: " ") else {return}
-        self.lblFaixaEtaria.text = "\(result[0]) \n \(result[1])"
+        self.lblFaixaEtaria.text = "Faixa Etária: \(result[0]) \(result[1])"
         
         if Toy.shared.observacoes == ""{
             self.txtObservacoes.text = "Não há observações."
@@ -153,5 +141,23 @@ class DetailsViewController: UIViewController{
             }
             CATransaction.commit()
         }
+    }
+}
+
+extension UIView {
+    // For insert layer in Foreground
+    func addBlackGradientLayerInForeground(frame: CGRect, colors:[UIColor]){
+        let gradient = CAGradientLayer()
+        gradient.frame = frame
+        gradient.colors = colors.map{$0.cgColor}
+        self.layer.addSublayer(gradient)
+    }
+    
+    // For insert layer in background
+    func addBlackGradientLayerInBackground(frame: CGRect, colors:[UIColor]){
+        let gradient = CAGradientLayer()
+        gradient.frame = frame
+        gradient.colors = colors.map{$0.cgColor}
+        self.layer.insertSublayer(gradient, at: 0)
     }
 }
