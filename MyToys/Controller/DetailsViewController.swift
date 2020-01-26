@@ -68,16 +68,16 @@ class DetailsViewController: UIViewController{
         
         self.lblNome.text = Toy.shared.nome
         if Int(quantidade)! > 1{
-            self.lblQuantidade.text = "\(quantidade) \n unidades"
+            self.lblQuantidade.text = "Quantidade: \(quantidade) unidades"
         }else{
-            self.lblQuantidade.text = "\(quantidade) \n unidade"
+            self.lblQuantidade.text = "Quantidade: \(quantidade) unidade"
         }
         
-        self.lblTamanho.text = Toy.shared.tamanho
+        self.lblTamanho.text = "Tamanho: \(String(Toy.shared.tamanho!))"
         
         let faixaEtaria = Toy.shared.faixaEtaria
         guard let result = faixaEtaria?.split(separator: " ") else {return}
-        self.lblFaixaEtaria.text = "\(result[0]) \n \(result[1])"
+        self.lblFaixaEtaria.text = "Faixa Etária: \(result[0]) \(result[1])"
         
         if Toy.shared.observacoes == ""{
             self.txtObservacoes.text = "Não há observações."

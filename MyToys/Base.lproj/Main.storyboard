@@ -632,35 +632,35 @@
                                                 <rect key="frame" x="40" y="296" width="334" height="32.5"/>
                                                 <color key="backgroundColor" red="0.31764705879999999" green="0.48627450979999998" blue="0.73725490199999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="textColor" red="0.9882352941176471" green="0.97647058823529409" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Observações" adjustsFontForContentSizeCategory="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sfc-tr-zOb">
-                                                <rect key="frame" x="40" y="446" width="334" height="161.5"/>
-                                                <color key="textColor" red="0.0" green="0.031372549020000001" blue="0.027450980390000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <rect key="frame" x="35" y="448.5" width="339" height="161.5"/>
+                                                <color key="textColor" red="0.015686274509803921" green="0.031372549019607843" blue="0.058823529411764705" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 <dataDetectorType key="dataDetectorTypes" link="YES"/>
                                             </textView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="8" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uJo-gy-lIK">
-                                                <rect key="frame" x="40" y="360.5" width="334" height="20.5"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" red="0.0" green="0.031372549020000001" blue="0.027450980390000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <rect key="frame" x="40" y="360.5" width="334" height="24"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                <color key="textColor" red="0.015686274509803921" green="0.031372549019607843" blue="0.058823529411764705" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pequeno" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="faa-wk-rL6">
-                                                <rect key="frame" x="40" y="389" width="334" height="20.5"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" red="0.0" green="0.031372549020000001" blue="0.027450980390000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <rect key="frame" x="40" y="392.5" width="334" height="24"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                <color key="textColor" red="0.015686274509803921" green="0.031372549019607843" blue="0.058823529411764705" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="wmJ-ay-VgW">
                                                 <rect key="frame" x="187.5" y="243" width="39" height="37"/>
                                             </pageControl>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+12 " lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Ta-9U-Axg">
-                                                <rect key="frame" x="40" y="417.5" width="334" height="20.5"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" red="0.0" green="0.031372549020000001" blue="0.027450980390000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <rect key="frame" x="40" y="424.5" width="334" height="24"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                <color key="textColor" red="0.015686274509803921" green="0.031372549019607843" blue="0.058823529411764705" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
@@ -675,7 +675,7 @@
                                             <constraint firstItem="Dy7-5J-G9O" firstAttribute="leading" secondItem="eif-Yn-ptU" secondAttribute="leading" id="YzX-DO-7am"/>
                                             <constraint firstItem="faa-wk-rL6" firstAttribute="top" secondItem="uJo-gy-lIK" secondAttribute="bottom" constant="8" id="cLm-IV-OtI"/>
                                             <constraint firstAttribute="trailing" secondItem="faa-wk-rL6" secondAttribute="trailing" constant="40" id="cYY-87-LMw"/>
-                                            <constraint firstItem="sfc-tr-zOb" firstAttribute="leading" secondItem="eif-Yn-ptU" secondAttribute="leading" constant="40" id="d1C-4i-Mdz"/>
+                                            <constraint firstItem="sfc-tr-zOb" firstAttribute="leading" secondItem="eif-Yn-ptU" secondAttribute="leading" constant="35" id="d1C-4i-Mdz"/>
                                             <constraint firstItem="vtl-3K-mYK" firstAttribute="leading" secondItem="eif-Yn-ptU" secondAttribute="leading" constant="40" id="fLK-qR-Y5b"/>
                                             <constraint firstAttribute="trailing" secondItem="uJo-gy-lIK" secondAttribute="trailing" constant="40" id="gNW-d1-QwI"/>
                                             <constraint firstAttribute="trailing" secondItem="Dy7-5J-G9O" secondAttribute="trailing" id="hBr-EI-MsB"/>
@@ -685,7 +685,7 @@
                                             <constraint firstItem="faa-wk-rL6" firstAttribute="leading" secondItem="eif-Yn-ptU" secondAttribute="leading" constant="40" id="mU1-k5-ChL"/>
                                             <constraint firstItem="uJo-gy-lIK" firstAttribute="top" secondItem="vtl-3K-mYK" secondAttribute="bottom" constant="32" id="qiT-l1-x25"/>
                                             <constraint firstAttribute="trailing" secondItem="vtl-3K-mYK" secondAttribute="trailing" constant="40" id="rDe-R6-AgF"/>
-                                            <constraint firstItem="sfc-tr-zOb" firstAttribute="top" secondItem="1Ta-9U-Axg" secondAttribute="bottom" constant="8" id="rXD-p7-Fqc"/>
+                                            <constraint firstItem="sfc-tr-zOb" firstAttribute="top" secondItem="1Ta-9U-Axg" secondAttribute="bottom" id="rXD-p7-Fqc"/>
                                             <constraint firstItem="sfc-tr-zOb" firstAttribute="height" secondItem="eif-Yn-ptU" secondAttribute="height" multiplier="0.2" id="t3Y-aw-ZdT"/>
                                             <constraint firstItem="uJo-gy-lIK" firstAttribute="leading" secondItem="eif-Yn-ptU" secondAttribute="leading" constant="40" id="yHo-co-jLr"/>
                                         </constraints>
