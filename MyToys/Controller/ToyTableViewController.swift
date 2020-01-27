@@ -36,6 +36,7 @@ class ToyTableViewController: UITableViewController, UITextFieldDelegate, UIText
     var images:[UIImage] = []
     var firstFoto:Bool = false
     var filepathImagensSalvas:[String] = []
+    var filepathImagensExcluidas:[String] = []
     var novasImagens:[UIImage] = []
 
     override func viewDidLoad() {
@@ -375,7 +376,7 @@ class ToyTableViewController: UITableViewController, UITextFieldDelegate, UIText
                 }
                 
                 if jaRemovido {
-                    Toy.shared.deleteFoto(fileURL: self.filepathImagensSalvas[self.indexFoto])
+                    self.filepathImagensExcluidas.append(self.filepathImagensSalvas[self.indexFoto])
                     self.filepathImagensSalvas.remove(at: self.indexFoto)
                 }
                 
@@ -414,6 +415,9 @@ class ToyTableViewController: UITableViewController, UITextFieldDelegate, UIText
                 var filenameFotos:String = ""
                 
                 if edit, let id = Toy.shared.id {
+                    for fotoExcluida in filepathImagensExcluidas {
+                        Toy.shared.deleteFoto(fileURL: fotoExcluida)
+                    }
                     for foto in novasImagens {
                         filenameFotos += ";"
                         let nome = Toy.shared.saveFoto(imagem: foto)
