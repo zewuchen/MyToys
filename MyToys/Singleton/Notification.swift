@@ -11,24 +11,31 @@ import UserNotifications
 import UIKit
 
 class Notification:NSObject,UNUserNotificationCenterDelegate{
-    
+
     static let shared:Notification = Notification()
-    
+
     private override init(){}
-    
+
+    /**
+    *Cria uma notificação do brinquedo que acabou de se criar, com um intervalo de 1 mês*
+    - Parameters:
+        - id: id do brinquedo
+        - nome: nome do brinquedo
+    - Returns: Nenhum
+    */
     func create(id:String, nome:String){
         let acceptAction = UNNotificationAction(identifier: "ACCEPT_ACTION", title: "OK", options: [.foreground])
-        
+
         let meetingInviteCategory =
             UNNotificationCategory(identifier: "OPTIONS",
                                    actions: [acceptAction],
                                    intentIdentifiers: [],
                                    hiddenPreviewsBodyPlaceholder: "",
                                    options: .customDismissAction)
-        
+
         //Cria a notificação fora
         let content = UNMutableNotificationContent()
-        
+
         //Título
         content.title = "Lembra deste brinquedo?"
         //Descrição
@@ -45,17 +52,17 @@ class Notification:NSObject,UNUserNotificationCenterDelegate{
         //Ordem aleatória
         let temp = Double.random(in: 1000 ..< 10000)
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: intervalo-temp, repeats: true)
-        
+
         content.categoryIdentifier = "OPTIONS"
         //Request
         let request = UNNotificationRequest(identifier: id, content: content, trigger: trigger)
-        
+
         let notificationCenter = UNUserNotificationCenter.current()
         notificationCenter.delegate = self
         notificationCenter.setNotificationCategories([meetingInviteCategory])
         notificationCenter.getNotificationSettings { (settings) in
             if settings.authorizationStatus == .authorized {
-                
+
                 //Adiciona a notificação
                 let center = UNUserNotificationCenter.current()
                 center.add(request) { (error : Error?) in
@@ -64,13 +71,20 @@ class Notification:NSObject,UNUserNotificationCenterDelegate{
                     }
                     print("Notificação cadastrada, ID: \(id), NOME: \(nome)")
                 }
-                
+
             } else {
                 print("Impossível mandar notificação - permissão negada")
             }
         }
     }
-    
+
+    /**
+    *Deleta e cria uma nova notificação do brinquedo que acabou de ser atualizado*
+    - Parameters:
+        - id: id do brinquedo
+        - nome: nome do brinquedo
+    - Returns: Nenhum
+    */
     func update(id:String, nome:String){
         do {
             delete(id: id)
@@ -79,7 +93,13 @@ class Notification:NSObject,UNUserNotificationCenterDelegate{
             print(error.localizedDescription)
         }
     }
-    
+
+    /**
+    *Deleta a notificação do brinquedo que acabou de ser excluído*
+    - Parameters:
+        - id: id do brinquedo
+    - Returns: Nenhum
+    */
     func delete(id:String){
         do {
             let notificationCenter = UNUserNotificationCenter.current()
@@ -90,18 +110,18 @@ class Notification:NSObject,UNUserNotificationCenterDelegate{
             print(error.localizedDescription)
         }
     }
-    
+
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
-        
+
         // Perform the task associated with the action.
         switch response.actionIdentifier {
         case "ACCEPT_ACTION":
             break
-            
+
         default:
             break
         }
-        
+
         // Always call the completion handler when done.
         completionHandler()
     }

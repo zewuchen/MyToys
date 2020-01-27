@@ -7,40 +7,32 @@
 //
 
 import UIKit
+import PDFKit
 
 class DetailsViewController: UIViewController{
 
     @IBOutlet weak var imgDetail: UIImageView!
-    @IBOutlet weak var lblNome: UILabel!
+    @IBOutlet weak var lblNome: UILabel! {
+        didSet {
+            lblNome.layer.cornerRadius = 10
+        }
+    }
     @IBOutlet weak var lblQuantidade: UILabel!
     @IBOutlet weak var lblTamanho: UILabel!
     @IBOutlet weak var lblFaixaEtaria: UILabel!
     @IBOutlet weak var txtObservacoes: UITextView!
+    @IBOutlet weak var page: UIPageControl!
     
-    //ViewCards
-    @IBOutlet weak var view1: UIView! {
-        didSet {
-            view1.layer.cornerRadius = 13
-            view1.layer.borderWidth = 1
-        }
-    }
-    @IBOutlet weak var view2: UIView! {
-        didSet {
-            view2.layer.cornerRadius = 13
-            view2.layer.borderWidth = 1
-        }
-    }
-    @IBOutlet weak var view3: UIView! {
-        didSet {
-            view3.layer.cornerRadius = 13
-            view3.layer.borderWidth = 1
-
-        }
-    }
+    var indexFoto = 0
+    let animationDuration: TimeInterval = 0.25
+    let switchingInterval: TimeInterval = 3
+    var transition = CATransition()
+    var images:[UIImage] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+        imgDetail.addBlackGradientLayerInForeground(frame: CGRect(x: 0, y: 0, width: imgDetail.frame.width, height: 200), colors: [UIColor.white, UIColor.init(white: 1, alpha: 0.5), UIColor.clear])
+        page.isHidden = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -48,11 +40,31 @@ class DetailsViewController: UIViewController{
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.isTranslucent = true
         self.navigationController?.view.backgroundColor = .clear
-        self.navigationController?.view.tintColor = #colorLiteral(red: 0.4748159051, green: 0.75166291, blue: 0.9633973241, alpha: 1)
+        self.navigationController?.view.tintColor = #colorLiteral(red: 0.3137254902, green: 0.4901960784, blue: 0.737254902, alpha: 1)
         
         if let ima = Toy.shared.foto{
-            self.imgDetail.image = UIImage(contentsOfFile: FileHelper.getFile(filePathWithoutExtension: ima)!)
+            let fotos = ima.split(separator: ";")
+            for foto in fotos {
+                self.images.append(UIImage(contentsOfFile: FileHelper.getFile(filePathWithoutExtension: String(foto))!)!)
+            }
+            if images.count > 1 {
+                self.indexFoto = 0
+                self.page.currentPage = 0
+                self.page.numberOfPages = images.count
+                page.currentPageIndicatorTintColor = #colorLiteral(red: 0.01568627451, green: 0.03137254902, blue: 0.05882352941, alpha: 1)
+                page.isHidden = false
+            }
+            self.imgDetail.image =  images[0]
         }
+        
+        let swipeLeftGesture = UISwipeGestureRecognizer(target: self, action: #selector(swipeLeft))
+        swipeLeftGesture.direction = .left
+
+        let swipeRightGesture = UISwipeGestureRecognizer(target: self, action: #selector(swipeRight))
+        swipeRightGesture.direction = .right
+        
+        self.imgDetail.addGestureRecognizer(swipeLeftGesture)
+        self.imgDetail.addGestureRecognizer(swipeRightGesture)
         
         guard let id = Toy.shared.id else {return}
         guard let nome = Toy.shared.nome else {return}
@@ -61,16 +73,14 @@ class DetailsViewController: UIViewController{
         
         self.lblNome.text = Toy.shared.nome
         if Int(quantidade)! > 1{
-            self.lblQuantidade.text = "\(quantidade) \n unidades"
+            self.lblQuantidade.text = "Quantidade: \(quantidade) unidades"
         }else{
-            self.lblQuantidade.text = "\(quantidade) \n unidade"
+            self.lblQuantidade.text = "Quantidade: \(quantidade) unidade"
         }
         
-        self.lblTamanho.text = Toy.shared.tamanho
+        self.lblTamanho.text = "Tamanho: \(String(Toy.shared.tamanho!))"
         
-        let faixaEtaria = Toy.shared.faixaEtaria
-        guard let result = faixaEtaria?.split(separator: " ") else {return}
-        self.lblFaixaEtaria.text = "\(result[0]) \n \(result[1])"
+        self.lblFaixaEtaria.text = "Faixa Etária: \(String(Toy.shared.faixaEtaria!))"
         
         if Toy.shared.observacoes == ""{
             self.txtObservacoes.text = "Não há observações."
@@ -93,5 +103,115 @@ class DetailsViewController: UIViewController{
                 nextVC.edit = true
             }
         }
+    }
+    
+    @objc func swipeLeft() {
+        animateImageView(direcao: "Esquerdo")
+    }
+
+    @objc func swipeRight() {
+        animateImageView(direcao: "Direito")
+    }
+    
+    /**
+    *Converte o formato da data*
+    - Parameters:
+        - direcao: string informando a direcao do swipe na UIImage
+    - Returns: Nenhum
+    */
+    func animateImageView(direcao: String) {
+        if images.count > 1 {
+            CATransaction.begin()
+
+            CATransaction.setAnimationDuration(animationDuration)
+
+            transition.type = CATransitionType.push
+            if direcao == "Direito" {
+                transition.subtype = CATransitionSubtype.fromLeft
+                indexFoto = indexFoto > 0 ? indexFoto - 1 : images.count - 1
+            } else {
+                transition.subtype = CATransitionSubtype.fromRight
+                indexFoto = indexFoto < images.count - 1 ? indexFoto + 1 : 0
+            }
+            imgDetail.layer.add(transition, forKey: kCATransition)
+            if images.count != 0 {
+                imgDetail.image = images[indexFoto]
+                page.currentPage = indexFoto
+            }
+            CATransaction.commit()
+        }
+    }
+    
+    func createPDF() {
+
+        let pdfMetaData = [
+            kCGPDFContextCreator: "Brinquedos",
+            kCGPDFContextAuthor: "MyToysApp"
+        ]
+        let format = UIGraphicsPDFRendererFormat()
+        format.documentInfo = pdfMetaData as [String: Any]
+
+        let pageRect = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height)
+        
+        let renderer = UIGraphicsPDFRenderer(bounds: pageRect, format: format)
+        
+        let data = renderer.pdfData { (context) in
+            
+            context.beginPage()
+            
+            let titleAttributes = [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 20)]
+            let textAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 20)]
+            
+            let imagem = images[0]
+            let imagemRect = CGRect(x: 0, y: 0, width: view.frame.width, height: imgDetail.frame.height)
+            imagem.draw(in: imagemRect)
+            
+            let title = "\(String(Toy.shared.nome!))"
+            title.draw(at: CGPoint(x: 15, y: imgDetail.frame.height + 20), withAttributes: titleAttributes)
+            
+            let quantidade = "Quantidade: \(String(Toy.shared.quantidade!)) unidades"
+            quantidade.draw(at: CGPoint(x: 15, y: imgDetail.frame.height + 55), withAttributes: textAttributes)
+            
+            let tamanho = "Tamanho: \(String(Toy.shared.tamanho!))"
+            tamanho.draw(at: CGPoint(x: 15, y: imgDetail.frame.height + 80), withAttributes: textAttributes)
+            
+            let faixa = "Faixa Etária: \(String(Toy.shared.faixaEtaria!))"
+            faixa.draw(at: CGPoint(x: 15, y: imgDetail.frame.height + 105), withAttributes: textAttributes)
+            
+            if Toy.shared.observacoes != nil {
+                let observacoes = "Observações: \n \(String(Toy.shared.observacoes!))"
+                observacoes.draw(at: CGPoint(x: 15, y: imgDetail.frame.height + 130), withAttributes: textAttributes)
+            } else {
+                let observacoes = "Não há observações"
+                observacoes.draw(at: CGPoint(x: 15, y: imgDetail.frame.height + 130), withAttributes: textAttributes)
+            }
+            
+        }
+        
+        let vc = UIActivityViewController(activityItems: [data],applicationActivities:[])
+        present(vc, animated: true, completion: nil)
+    }
+    
+    @IBAction func btnCompartilhar(_ sender: Any) {
+        createPDF()
+    }
+    
+}
+
+extension UIView {
+    // For insert layer in Foreground
+    func addBlackGradientLayerInForeground(frame: CGRect, colors:[UIColor]){
+        let gradient = CAGradientLayer()
+        gradient.frame = frame
+        gradient.colors = colors.map{$0.cgColor}
+        self.layer.addSublayer(gradient)
+    }
+    
+    // For insert layer in background
+    func addBlackGradientLayerInBackground(frame: CGRect, colors:[UIColor]){
+        let gradient = CAGradientLayer()
+        gradient.frame = frame
+        gradient.colors = colors.map{$0.cgColor}
+        self.layer.insertSublayer(gradient, at: 0)
     }
 }
