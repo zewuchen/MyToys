@@ -74,6 +74,7 @@ class ToyTableViewController: UITableViewController, UITextFieldDelegate, UIText
                 }
                 reloadPageControl(acao: "Editando")
                 btnExcluir.isHidden = false
+                firstFoto = true
             }
         } else {
             Toy.shared.clear()
@@ -117,16 +118,14 @@ class ToyTableViewController: UITableViewController, UITextFieldDelegate, UIText
     */
     func reloadPageControl(acao: String) {
         if acao == "Excluir", images.count != 0 {
-            indexFoto = indexFoto - 1 > -1 ? indexFoto - 1 : 0
-            page.currentPage = indexFoto
-            self.images.remove(at: indexFoto)
-            if images.count > 0 {
-                imgFoto.image = images[indexFoto]
-            }
+            indexFoto = indexFoto  >= images.count ? 0 : indexFoto
+            imgFoto.image = images[indexFoto]
             page.numberOfPages = self.images.count
+            page.currentPage = indexFoto
         } else if acao == "Adicionar"{
             page.numberOfPages = self.images.count
             page.currentPage = self.images.count-1
+            page.isHidden = false
             indexFoto = self.images.count-1
             imgFoto.image = images[indexFoto]
         } else if acao == "Editando" {
@@ -139,7 +138,9 @@ class ToyTableViewController: UITableViewController, UITextFieldDelegate, UIText
         
         if images.count == 0 {
             btnExcluir.isHidden = true
+            page.isHidden = true
             imgFoto.image = UIImage(named: "Picture Icon")
+            firstFoto = false
         }
     }
     
@@ -357,11 +358,19 @@ class ToyTableViewController: UITableViewController, UITextFieldDelegate, UIText
             if self.edit {
                 var jaRemovido = true
                 
-                for i in 0 ... self.novasImagens.count - 1 {
-                    if self.images[self.indexFoto] == self.novasImagens[i] {
-                        self.novasImagens.remove(at: i)
+                if self.novasImagens.count == 1 {
+                    if self.images[self.indexFoto] == self.novasImagens[0] {
+                        self.novasImagens.remove(at: 0)
                         jaRemovido = false
                         print("removido recem adicionada")
+                    }
+                } else if self.novasImagens.count > 1 {
+                    for i in 0 ..< self.novasImagens.count - 1 {
+                        if self.images[self.indexFoto] == self.novasImagens[i] {
+                            self.novasImagens.remove(at: i)
+                            jaRemovido = false
+                            print("removido recem adicionada")
+                        }
                     }
                 }
                 
@@ -371,6 +380,7 @@ class ToyTableViewController: UITableViewController, UITextFieldDelegate, UIText
                 }
                 
             }
+            self.images.remove(at: self.indexFoto)
             
             self.reloadPageControl(acao: "Excluir")
         }
