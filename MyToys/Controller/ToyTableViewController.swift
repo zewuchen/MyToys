@@ -34,14 +34,15 @@ class ToyTableViewController: UITableViewController, UITextFieldDelegate, UIText
     var faixaEtaria:String = ""
     var edit:Bool = false
     var images:[UIImage] = []
+    var firstFoto:Bool = false
     var filepathImagensSalvas:[String] = []
     var novasImagens:[UIImage] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.txtQuantidade.delegate =  self
         self.txtNome.delegate = self
         self.txtNome.addTarget(self, action: #selector(txtNomeDidChange(_:)), for: .editingChanged)
-        self.txtQuantidade.delegate =  self
         self.txtQuantidade.addTarget(self, action: #selector(txtQuantidadeDidChange(_:)), for: .editingChanged)
         self.txtViewObservacoes.delegate = self
 
@@ -73,6 +74,7 @@ class ToyTableViewController: UITableViewController, UITextFieldDelegate, UIText
                 }
                 reloadPageControl(acao: "Editando")
                 btnExcluir.isHidden = false
+                firstFoto = true
             }
         } else {
             Toy.shared.clear()
@@ -116,16 +118,14 @@ class ToyTableViewController: UITableViewController, UITextFieldDelegate, UIText
     */
     func reloadPageControl(acao: String) {
         if acao == "Excluir", images.count != 0 {
-            indexFoto = indexFoto - 1 > -1 ? indexFoto - 1 : 0
-            page.currentPage = indexFoto
-            self.images.remove(at: indexFoto)
-            if images.count > 0 {
-                imgFoto.image = images[indexFoto]
-            }
+            indexFoto = indexFoto  >= images.count ? 0 : indexFoto
+            imgFoto.image = images[indexFoto]
             page.numberOfPages = self.images.count
+            page.currentPage = indexFoto
         } else if acao == "Adicionar"{
             page.numberOfPages = self.images.count
             page.currentPage = self.images.count-1
+            page.isHidden = false
             indexFoto = self.images.count-1
             imgFoto.image = images[indexFoto]
         } else if acao == "Editando" {
@@ -138,7 +138,9 @@ class ToyTableViewController: UITableViewController, UITextFieldDelegate, UIText
         
         if images.count == 0 {
             btnExcluir.isHidden = true
+            page.isHidden = true
             imgFoto.image = UIImage(named: "Picture Icon")
+            firstFoto = false
         }
     }
     
@@ -260,42 +262,91 @@ class ToyTableViewController: UITableViewController, UITextFieldDelegate, UIText
             textView.text = "Observações"
             textView.textColor = .lightGray
         }
-        checkObservacoes()
+//        checkObservacoes()
         textView.resignFirstResponder()
     }
 
     @IBAction func txtNomeDidChange(_ sender: Any) {
-        checkInputValues()
+//        checkInputValues()
 
     }
 
     @IBAction func txtQuantidadeDidChange(_ sender: Any) {
-        checkInputValues()
+//        checkInputValues()
     }
 
-    /**
-    *Checa se os campos (nome, quantidade) estão preenchidos*
-    - Parameters: Nenhum
-    - Returns: Nenhum
-    */
-    func checkInputValues() {
-        if txtNome.text != nil, txtNome.text != "", txtQuantidade.text != nil, txtQuantidade.text != "0", txtQuantidade.text != ""{
-            btnSalvar.isEnabled = true
-        }else{
-            btnSalvar.isEnabled = false
-        }
-    }
+//    /**
+//    *Checa se os campos (nome, quantidade) estão preenchidos*
+//    - Parameters: Nenhum
+//    - Returns: Nenhum
+//    */
+//    func checkInputValues() {
+//        if txtNome.text != nil, txtNome.text != "", txtQuantidade.text != nil, txtQuantidade.text != "0", txtQuantidade.text != ""{
+//            btnSalvar.isEnabled = true
+//        }else{
+//            btnSalvar.isEnabled = false
+//        }
+//    }
 
     /**
     *Checa se os campos (nome, quantidade, observações) estão preenchidos*
     - Parameters: Nenhum
     - Returns: Nenhum
     */
-    func checkObservacoes() {
-        if txtViewObservacoes.text != Toy.shared.observacoes, txtNome.text != nil, txtNome.text != "", txtQuantidade.text != nil, txtQuantidade.text != "0", txtQuantidade.text != ""{
-            btnSalvar.isEnabled = true
-        }else{
-            btnSalvar.isEnabled = false
+//    func checkObservacoes() {
+//        if txtViewObservacoes.text != Toy.shared.observacoes, txtNome.text != nil, txtNome.text != "", txtQuantidade.text != nil, txtQuantidade.text != "0", txtQuantidade.text != ""{
+//            btnSalvar.isEnabled = true
+//        }else{
+//            btnSalvar.isEnabled = false
+//        }
+//    }
+    
+    /**
+    *Checa se os campos (nome, quantidade, foto) estão preenchidos*
+    - Parameters: Nenhum
+    - Returns: Bool, True para válido, False para inválido
+    */
+    func checkFields() -> Bool {
+        guard let nome = txtNome.text else {return false}
+        guard let quantidade = txtQuantidade.text else {return false}
+        if nome != "", quantidade != "0", quantidade != "", firstFoto {
+            return true
+        } else {
+            
+            var message = ""
+            
+            if nome == ""{
+                message += "O campo nome precisa ser preenchido.\n "
+                txtNome.layer.borderColor = #colorLiteral(red: 0.8431372549, green: 0.1490196078, blue: 0.2392156863, alpha: 1)
+                txtNome.layer.borderWidth = 0.5
+            } else {
+                txtNome.layer.borderWidth = 0
+            }
+            
+            if quantidade == "0" || quantidade == "" {
+                message += "O campo quantidade precisa ser preenchido.\n "
+                txtQuantidade.text = ""
+                txtQuantidade.layer.borderColor = #colorLiteral(red: 0.8431372549, green: 0.1490196078, blue: 0.2392156863, alpha: 1)
+                txtQuantidade.layer.borderWidth = 0.5
+            } else {
+                txtQuantidade.layer.borderWidth = 0
+            }
+            
+            if !firstFoto {
+                message += "É necessário adicionar uma foto."
+                imgFoto.layer.borderColor = #colorLiteral(red: 0.8431372549, green: 0.1490196078, blue: 0.2392156863, alpha: 1)
+                imgFoto.layer.borderWidth = 0.5
+            } else {
+                imgFoto.layer.borderWidth = 0
+            }
+                
+            let alerta = UIAlertController(title: "Dados Inválidos", message: "\(message)", preferredStyle: .alert)
+            let aceitar = UIAlertAction(title: "OK", style: .cancel)
+
+            alerta.addAction(aceitar)
+            present(alerta, animated: true, completion: nil)
+            
+            return false
         }
     }
     
@@ -307,11 +358,19 @@ class ToyTableViewController: UITableViewController, UITextFieldDelegate, UIText
             if self.edit {
                 var jaRemovido = true
                 
-                for i in 0 ... self.novasImagens.count - 1 {
-                    if self.images[self.indexFoto] == self.novasImagens[i] {
-                        self.novasImagens.remove(at: i)
+                if self.novasImagens.count == 1 {
+                    if self.images[self.indexFoto] == self.novasImagens[0] {
+                        self.novasImagens.remove(at: 0)
                         jaRemovido = false
                         print("removido recem adicionada")
+                    }
+                } else if self.novasImagens.count > 1 {
+                    for i in 0 ..< self.novasImagens.count - 1 {
+                        if self.images[self.indexFoto] == self.novasImagens[i] {
+                            self.novasImagens.remove(at: i)
+                            jaRemovido = false
+                            print("removido recem adicionada")
+                        }
                     }
                 }
                 
@@ -321,6 +380,7 @@ class ToyTableViewController: UITableViewController, UITextFieldDelegate, UIText
                 }
                 
             }
+            self.images.remove(at: self.indexFoto)
             
             self.reloadPageControl(acao: "Excluir")
         }
@@ -341,39 +401,42 @@ class ToyTableViewController: UITableViewController, UITextFieldDelegate, UIText
             if self.edit {
                 self.novasImagens.append(imagem)
             }
+            self.firstFoto = true
         }
     }
     
     @IBAction func btnSalvar(_ sender: Any) {
-        Toy.shared.nome = txtNome.text
-        Toy.shared.quantidade = Int64(txtQuantidade.text!)
-        Toy.shared.observacoes = txtViewObservacoes.text
-        
-        var filenameFotos:String = ""
-        
-        if edit, let id = Toy.shared.id {
-            for foto in novasImagens {
-                filenameFotos += ";"
-                let nome = Toy.shared.saveFoto(imagem: foto)
-                filenameFotos += nome
-            }
-            for antigaFoto in filepathImagensSalvas {
-                filenameFotos += ";"
-                filenameFotos += antigaFoto
-            }
-            Toy.shared.foto = filenameFotos
-            Toy.shared.update(id: id)
-        } else {
-            for foto in images {
-                filenameFotos += ";"
-                let nome = Toy.shared.saveFoto(imagem: foto)
-                filenameFotos += nome
-            }
-            Toy.shared.foto = filenameFotos
-            Toy.shared.save()
+        if checkFields() {
+            Toy.shared.nome = txtNome.text
+                Toy.shared.quantidade = Int64(txtQuantidade.text!)
+                Toy.shared.observacoes = txtViewObservacoes.text
+                
+                var filenameFotos:String = ""
+                
+                if edit, let id = Toy.shared.id {
+                    for foto in novasImagens {
+                        filenameFotos += ";"
+                        let nome = Toy.shared.saveFoto(imagem: foto)
+                        filenameFotos += nome
+                    }
+                    for antigaFoto in filepathImagensSalvas {
+                        filenameFotos += ";"
+                        filenameFotos += antigaFoto
+                    }
+                    Toy.shared.foto = filenameFotos
+                    Toy.shared.update(id: id)
+                } else {
+                    for foto in images {
+                        filenameFotos += ";"
+                        let nome = Toy.shared.saveFoto(imagem: foto)
+                        filenameFotos += nome
+                    }
+                    Toy.shared.foto = filenameFotos
+                    Toy.shared.save()
+                }
+            
+                self.navigationController?.popToRootViewController(animated: true)
         }
-    
-        self.navigationController?.popToRootViewController(animated: true)
     }
     
 }
