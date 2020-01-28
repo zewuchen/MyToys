@@ -31,7 +31,7 @@ class DetailsViewController: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        imgDetail.addBlackGradientLayerInForeground(frame: CGRect(x: 0, y: 0, width: imgDetail.frame.width, height: 200), colors: [UIColor.white, UIColor.init(white: 1, alpha: 0.5), UIColor.clear])
+        imgDetail.addBlackGradientLayerInForeground(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 200), colors: [UIColor.white, UIColor.init(white: 1, alpha: 0.5), UIColor.clear])
         page.isHidden = true
     }
     
