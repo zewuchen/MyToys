@@ -217,7 +217,7 @@ class ToyTableViewController: UITableViewController, UITextFieldDelegate, UIText
             default:
                 let bottomBorder = CALayer()
 
-                bottomBorder.frame = CGRect(x: 15.0, y: 49.5, width: cell.bounds.width, height: 0.5)
+                bottomBorder.frame = CGRect(x: 15.0, y: 49.5, width: view.frame.width, height: 0.5)
                 bottomBorder.backgroundColor = UIColor(white: 0.8, alpha: 1.0).cgColor
                 cell.contentView.layer.addSublayer(bottomBorder)
         }
