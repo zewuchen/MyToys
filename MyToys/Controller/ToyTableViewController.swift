@@ -38,6 +38,7 @@ class ToyTableViewController: UITableViewController, UITextFieldDelegate, UIText
     var filepathImagensSalvas:[String] = []
     var filepathImagensExcluidas:[String] = []
     var novasImagens:[UIImage] = []
+    var imagePicker = UIImagePickerController()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,6 +51,8 @@ class ToyTableViewController: UITableViewController, UITextFieldDelegate, UIText
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         tap.cancelsTouchesInView = false
         self.view.addGestureRecognizer(tap)
+        imagePicker.delegate = self
+        imagePicker.allowsEditing = false
         
         layout()
         setSwipe()
@@ -217,7 +220,7 @@ class ToyTableViewController: UITableViewController, UITextFieldDelegate, UIText
             default:
                 let bottomBorder = CALayer()
 
-                bottomBorder.frame = CGRect(x: 15.0, y: 49.5, width: cell.bounds.width, height: 0.5)
+                bottomBorder.frame = CGRect(x: 15.0, y: 49.5, width: view.frame.width, height: 0.5)
                 bottomBorder.backgroundColor = UIColor(white: 0.8, alpha: 1.0).cgColor
                 cell.contentView.layer.addSublayer(bottomBorder)
         }
@@ -395,14 +398,69 @@ class ToyTableViewController: UITableViewController, UITextFieldDelegate, UIText
     }
     
     @IBAction func btnFoto(_ sender: Any) {
-        Camera().selecionadorImagem(self){ imagem in
-            self.images.append(imagem)
-            self.reloadPageControl(acao: "Adicionar")
-            self.btnExcluir.isHidden = false
-            if self.edit {
-                self.novasImagens.append(imagem)
+        
+        let alerta = UIAlertController(title: "Escolha uma opção", message: nil, preferredStyle: .actionSheet)
+        
+        let camera = UIAlertAction(title: "Câmera", style: .default){
+            UIAlertAction in
+            self.openCamera(tipo: "camera")
+        }
+
+        let galeria = UIAlertAction(title: "Galeria", style: .default){
+            UIAlertAction in
+            self.openCamera(tipo: "galeria")
+        }
+
+        let cancelar = UIAlertAction(title: "Cancelar", style: .cancel){
+            UIAlertAction in
+        }
+        
+        alerta.addAction(camera)
+        alerta.addAction(galeria)
+        alerta.addAction(cancelar)
+        
+        if let popoverController = alerta.popoverPresentationController {
+          popoverController.sourceView = self.view
+          popoverController.sourceRect = CGRect(x: self.view.bounds.midX, y: self.view.bounds.midY, width: 0, height: 0)
+          popoverController.permittedArrowDirections = []
+        }
+        
+        present(alerta, animated: true, completion: nil)
+        
+//        if UIImagePickerController.isSourceTypeAvailable(.savedPhotosAlbum){
+//            imagePicker.delegate = self
+//            imagePicker.sourceType = .savedPhotosAlbum
+//            imagePicker.allowsEditing = false
+//
+//            present(imagePicker, animated: true, completion: nil)
+//        }
+//        Camera().selecionadorImagem(self){ imagem in
+//            self.images.append(imagem)
+//            self.reloadPageControl(acao: "Adicionar")
+//            self.btnExcluir.isHidden = false
+//            if self.edit {
+//                self.novasImagens.append(imagem)
+//            }
+//            self.firstFoto = true
+//        }
+    }
+    
+    func openCamera(tipo: String) {
+        if tipo == "camera" {
+            if(UIImagePickerController .isSourceTypeAvailable(.camera)){
+                imagePicker.sourceType = .camera
+                present(imagePicker, animated: true, completion: nil)
+            } else {
+                let alerta = UIAlertController(title: "Alerta", message: "Não foi possível acessar sua câmera", preferredStyle: .alert)
+                let cancelar = UIAlertAction(title: "OK", style: .cancel){
+                    UIAlertAction in
+                }
+                alerta.addAction(cancelar)
+                present(alerta, animated: true, completion: nil)
             }
-            self.firstFoto = true
+        } else if tipo == "galeria" {
+            imagePicker.sourceType = .savedPhotosAlbum
+            present(imagePicker, animated: true, completion: nil)
         }
     }
     
@@ -443,4 +501,31 @@ class ToyTableViewController: UITableViewController, UITextFieldDelegate, UIText
         }
     }
     
+}
+
+extension ToyTableViewController: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+
+        //Desfaz a tela da Galeria que foi gerada
+        picker.dismiss(animated: true, completion: nil)
+
+        //Verifica o arquivo aberto é realmente uma imagem
+        guard let image = info[.originalImage] as? UIImage else {
+            return
+        }
+
+        self.images.append(image)
+        self.reloadPageControl(acao: "Adicionar")
+        self.btnExcluir.isHidden = false
+        if self.edit {
+            self.novasImagens.append(image)
+        }
+        self.firstFoto = true
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        //Desfaz a tela da Galeria que foi gerada
+        picker.dismiss(animated: true, completion: nil)
+    }
 }
