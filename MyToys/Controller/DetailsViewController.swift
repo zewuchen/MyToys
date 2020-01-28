@@ -22,6 +22,7 @@ class DetailsViewController: UIViewController{
     @IBOutlet weak var lblFaixaEtaria: UILabel!
     @IBOutlet weak var txtObservacoes: UITextView!
     @IBOutlet weak var page: UIPageControl!
+    @IBOutlet weak var btnCompartilhar: UIBarButtonItem!
     
     var indexFoto = 0
     let animationDuration: TimeInterval = 0.25
@@ -33,6 +34,11 @@ class DetailsViewController: UIViewController{
         super.viewDidLoad()
         imgDetail.addBlackGradientLayerInForeground(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 200), colors: [UIColor.white, UIColor.init(white: 1, alpha: 0.5), UIColor.clear])
         page.isHidden = true
+        
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            btnCompartilhar.isEnabled = false
+            btnCompartilhar.tintColor = .clear
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
