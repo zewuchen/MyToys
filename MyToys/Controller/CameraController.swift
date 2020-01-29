@@ -71,7 +71,7 @@ class Camera: NSObject, UIImagePickerControllerDelegate, UINavigationControllerD
 
 
     /**
-    *Utiliza a câmera*
+    *Abre o picker da câmera*
     - Parameters: Nenhum
     - Returns: Nenhum
     */
@@ -99,7 +99,7 @@ class Camera: NSObject, UIImagePickerControllerDelegate, UINavigationControllerD
     }
 
     /**
-    *Utiliza a galeria*
+    *Abre o picker da biblioteca*
     - Parameters: Nenhum
     - Returns: Nenhum
     */
