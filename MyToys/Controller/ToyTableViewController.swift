@@ -148,10 +148,20 @@ class ToyTableViewController: UITableViewController, UITextFieldDelegate, UIText
         }
     }
     
+    /**
+    *Chama a função para animar a UIImage para o lado Esquerdo*
+    - Parameters: Nenhum
+    - Returns: Nenhum
+    */
     @objc func swipeLeft() {
         animateImageView(direcao: "Esquerdo")
     }
-
+    
+    /**
+    *Chama a função para animar a UIImage para o lado Direito*
+    - Parameters: Nenhum
+    - Returns: Nenhum
+    */
     @objc func swipeRight() {
         animateImageView(direcao: "Direito")
     }
@@ -354,6 +364,12 @@ class ToyTableViewController: UITableViewController, UITextFieldDelegate, UIText
         }
     }
     
+    /**
+    *Exclui a foto atual no UIImage*
+    - Parameters:
+        - Any
+    - Returns: Nenhum
+    */
     @IBAction func btnExcluir(_ sender: Any) {
         let alerta = UIAlertController(title: "Tem certeza que deseja excluir?", message: "A foto não poderá ser recuperada", preferredStyle: .alert)
         let aceitar = UIAlertAction(title: "Excluir", style: .destructive){
@@ -397,6 +413,12 @@ class ToyTableViewController: UITableViewController, UITextFieldDelegate, UIText
         present(alerta, animated: true, completion: nil)
     }
     
+    /**
+    *Chama um picker para saber de onde será adicionada a foto e chama a função de adicionar foto*
+    - Parameters:
+        - Any
+    - Returns: Nenhum
+    */
     @IBAction func btnFoto(_ sender: Any) {
         
         let alerta = UIAlertController(title: "Escolha uma opção", message: nil, preferredStyle: .actionSheet)
@@ -445,6 +467,12 @@ class ToyTableViewController: UITableViewController, UITextFieldDelegate, UIText
 //        }
     }
     
+    /**
+    *Abre o selecionar de imagem*
+    - Parameters:
+        - tipo: Se a foto virá da biblioteca ou da câmera
+    - Returns: Nenhum
+    */
     func openCamera(tipo: String) {
         if tipo == "camera" {
             if(UIImagePickerController .isSourceTypeAvailable(.camera)){
@@ -464,6 +492,12 @@ class ToyTableViewController: UITableViewController, UITextFieldDelegate, UIText
         }
     }
     
+    /**
+    *Salva o brinquedo*
+    - Parameters:
+        - Any
+    - Returns: Nenhum
+    */
     @IBAction func btnSalvar(_ sender: Any) {
         if checkFields() {
             Toy.shared.nome = txtNome.text

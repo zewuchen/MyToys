@@ -34,6 +34,12 @@ class CardToyViewController: UIViewController {
         wallpaper.removeFromSuperview()
     }
     
+    /**
+    *Habilita o modo de exclusão e muda o icon direito da navigation*
+    - Parameters:
+        - Any
+    - Returns: Nenhum
+    */
     @IBAction func btnExcluir(_ sender: Any) {
         if !editando {
             navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(deleteItem))
@@ -59,10 +65,50 @@ class CardToyViewController: UIViewController {
         collectionView.allowsMultipleSelection = editando
     }
     
+    /**
+    *Apresenta a tela para adicionar um novo brinquedo*
+    - Parameters:
+        - Any
+    - Returns: Nenhum
+    */
     @IBAction func newToy(_ sender: Any) {
         let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
         let controller = storyboard.instantiateViewController(withIdentifier: "newToy")
         self.navigationController!.pushViewController(controller, animated: true)
+    }
+    
+    /**
+    *Exclui os itens selecionados e apresenta um alerta*
+    - Parameters:
+        - Any
+    - Returns: Nenhum
+    */
+    @IBAction func deleteItem(_ sender: Any) {
+        let alerta = UIAlertController(title: "Tem certeza que deseja excluir?", message: "Os dados não poderão ser recuperados", preferredStyle: .alert)
+        let aceitar = UIAlertAction(title: "Excluir", style: .destructive){
+            UIAlertAction in
+            
+            if let selectedCells = self.collectionView.indexPathsForSelectedItems {
+              
+                for item in selectedCells {
+                    Toy.shared.delete(id: self.brinquedos[item.row].id!)
+                    self.brinquedos.remove(at: item.row)
+                }
+                
+                self.collectionView.deleteItems(at: selectedCells)
+                self.collectionView.reloadData()
+                self.navigationItem.rightBarButtonItem?.isEnabled = false
+            }
+            self.dados()
+            self.setWallpaper()
+        }
+        let cancelar = UIAlertAction(title: "Cancelar", style: .cancel){
+            UIAlertAction in
+        }
+
+        alerta.addAction(aceitar)
+        alerta.addAction(cancelar)
+        present(alerta, animated: true, completion: nil)
     }
     
     /**
@@ -144,33 +190,5 @@ extension CardToyViewController: UICollectionViewDelegate {
         if let selectedItems = collectionView.indexPathsForSelectedItems, selectedItems.count == 0 {
             navigationItem.rightBarButtonItem?.isEnabled = false
         }
-    }
-    
-    @IBAction func deleteItem(_ sender: Any) {
-        let alerta = UIAlertController(title: "Tem certeza que deseja excluir?", message: "Os dados não poderão ser recuperados", preferredStyle: .alert)
-        let aceitar = UIAlertAction(title: "Excluir", style: .destructive){
-            UIAlertAction in
-            
-            if let selectedCells = self.collectionView.indexPathsForSelectedItems {
-              
-                for item in selectedCells {
-                    Toy.shared.delete(id: self.brinquedos[item.row].id!)
-                    self.brinquedos.remove(at: item.row)
-                }
-                
-                self.collectionView.deleteItems(at: selectedCells)
-                self.collectionView.reloadData()
-                self.navigationItem.rightBarButtonItem?.isEnabled = false
-            }
-            self.dados()
-            self.setWallpaper()
-        }
-        let cancelar = UIAlertAction(title: "Cancelar", style: .cancel){
-            UIAlertAction in
-        }
-
-        alerta.addAction(aceitar)
-        alerta.addAction(cancelar)
-        present(alerta, animated: true, completion: nil)
     }
 }

@@ -28,6 +28,12 @@ class CameraViewController: UIViewController {
         }
     }
     
+    /**
+    *Adiciona uma foto ao UIImage e salva para o brinquedo*
+    - Parameters:
+        - Any
+    - Returns: Nenhum
+    */
     @IBAction func btnAddFoto(_ sender: Any) {
         Camera().selecionadorImagem(self){ imagem in
             self.image.image = imagem
@@ -41,6 +47,12 @@ class CameraViewController: UIViewController {
         }
     }
     
+    /**
+    *Salva as informações e volta para a tela principal*
+    - Parameters:
+        - Any
+    - Returns: Nenhum
+    */
     @IBAction func btnSalvar(_ sender: Any) {
 //        self.navigationController?.popViewController(animated: true) Dá pop em apenas uma tela
 //        if Toy.shared.edit == true, let id = Toy.shared.id{
